@@ -7,7 +7,7 @@
           <font color="#CBAB58;">Bloom Pod</font>
         </h1>
       </div>
-
+      
       <div class="login-form ion-padding">
         <div class="form-input">
           <ion-item style="width: 100%; margin: auto" lines="none">
@@ -28,6 +28,7 @@
                 required
               />
             </mat-form-field>
+
           </ion-item>
           <ion-item style="width: 100%; margin: auto" lines="none">
             <mat-form-field
@@ -36,6 +37,29 @@
               style="width: 125%"
             >
               <mat-label>Password</mat-label>
+              <input
+                matInput
+                [type]="passwordType"
+                [(ngModel)]="password"
+                [ngModelOptions]="{standalone: true}"
+                required
+              />
+              <mat-icon
+                class="passwordIcon"
+                (click)="hideShowPassword()"
+                matSuffix
+                >{{ passwordIcon }}</mat-icon
+              >
+            </mat-form-field>
+          </ion-item>
+
+          <ion-item style="width: 100%; margin: auto" lines="none">
+            <mat-form-field
+              class="full-width"
+              appearance="outline"
+              style="width: 125%"
+            >
+              <mat-label>hello</mat-label>
               <input
                 matInput
                 [type]="passwordType"
