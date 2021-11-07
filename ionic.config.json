@@ -1,0 +1,8 @@
+{
+  "name": "newApp",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}

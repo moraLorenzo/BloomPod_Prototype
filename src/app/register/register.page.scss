@@ -1,0 +1,112 @@
+.internal {
+  --border-radius: 28px;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+.submit {
+  --background: #52ba88;
+  --border-radius: 28px;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+ion-card {
+  --border-radius: 28px;
+}
+
+span {
+  color: gray;
+}
+
+.wrapper {
+  font-family: "Inter Semi-bold";
+}
+
+.bloom {
+  position: absolute;
+  width: 80px;
+  opacity: 0.5;
+}
+.top {
+  display: flex;
+  justify-content: center;
+  padding: 20%;
+}
+
+form {
+  font-family: "Inter Semi-bold";
+}
+
+.ripple-parent {
+  position: relative;
+  overflow: hidden;
+}
+.center {
+  // margin: auto;
+  // border: 3px solid green;
+  // padding: 10px;
+  font-family: "Inter";
+}
+.outer {
+  padding: 3%;
+  display: table;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.inner {
+  margin-left: auto;
+  margin-right: auto;
+  //   width: 400px;
+  /* Whatever width you want */
+}
+
+ion-avatar {
+  margin: auto;
+}
+
+ion-card {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  ion-card-subtitle {
+    font-family: "Inter Semi-bold";
+  }
+  ion-card-title {
+    font-family: "Inter Semi-bold";
+  }
+  ion-card-content {
+    font-family: "Inter";
+  }
+}
+
+.top {
+  margin-top: 5%;
+}
+
+h1 {
+  font-family: "Inter Semi-bold";
+  margin-left: 5%;
+}
+.right {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+}
+
+.img-container {
+  text-align: center;
+}

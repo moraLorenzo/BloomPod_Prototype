@@ -1,0 +1,106 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
+import { DataService } from '../services/data/data.service';
+import { UserService } from '../services/user.service';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
+})
+export class LoginPage implements OnInit {
+  email: string;
+  password: string;
+  passwordType: string = 'password';
+  passwordIcon: string = 'visibility_off';
+  isAccepted: boolean = false;
+
+  constructor(
+    private router: Router,
+    private dataService: DataService,
+    public toastController: ToastController,
+    private userService: UserService
+  ) {}
+
+  ngOnInit() {}
+
+  ionViewWillEnter() {
+    if (this.userService.isLoggedIn()) {
+      this.router.navigate(['tabs']);
+    }
+  }
+
+  navReg() {
+    this.email = '';
+    this.password = '';
+    this.router.navigate(['register']);
+  }
+
+  async presentToast(msg) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000,
+    });
+    toast.present();
+  }
+
+  hideShowPassword() {
+    this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
+    this.passwordIcon =
+      this.passwordIcon === 'visibility_off' ? 'visibility' : 'visibility_off';
+  }
+
+  async checkAccepted(): Promise<boolean> {
+    let param1 = this.email;
+    let param2 = this.password;
+
+    await this.dataService
+      .processData('doctoraccepted', { param1, param2 })
+      .then(async (res: any) => {
+        if (res.error) {
+          this.isAccepted = false;
+        } else if (res) {
+          this.isAccepted = true;
+        } else {
+          this.isAccepted = false;
+        }
+      });
+
+    return this.isAccepted;
+  }
+
+  public async checklogin(e) {
+    let param1 = e.target[0].value;
+    let param2 = e.target[1].value;
+
+    await this.dataService
+      .processData('logindoctor', { param1, param2 })
+      .then(async (res: any) => {
+        if (res.error) {
+          this.presentToast('Invalid Inputs');
+        } else {
+          let isAccepted = await this.checkAccepted();
+          if (isAccepted) {
+            window.sessionStorage.setItem('doctor_id', res.data.doctor_id);
+            window.sessionStorage.setItem('doctor_name', res.data.doctor_name);
+            this.presentToast(
+              'Successfully logged in ' +
+                window.sessionStorage.getItem('doctor_name')
+            );
+            this.email = '';
+            this.password = '';
+            this.passwordIcon = 'visibility_off';
+            this.userService.setLoggedIn();
+            this.router.navigate(['tabs']);
+          } else {
+            this.presentToast('Account not yet Accepted');
+          }
+        }
+      })
+      .catch(async (err) => {
+        await this.presentToast('Invalid inputs');
+        // console.log(`login failed ${err}`);
+      });
+  }
+}

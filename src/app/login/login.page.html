@@ -1,0 +1,86 @@
+<ion-content>
+  <form ngNativeValidate (ngSubmit)="checklogin($event)">
+    <div class="login-section ion-padding">
+      <div class="top">
+        <img src="../../assets/icon/Bloom.png" alt="Bloom Pod" /><br />
+        <h1>
+          <font color="#CBAB58;">Bloom Pod</font>
+        </h1>
+      </div>
+
+      <div class="login-form ion-padding">
+        <div class="form-input">
+          <ion-item style="width: 100%; margin: auto" lines="none">
+            <!-- I/O for Login -->
+
+            <!-- Fetching username input -->
+            <mat-form-field
+              class="full-width"
+              appearance="outline"
+              style="width: 125%"
+            >
+              <mat-label>Email</mat-label>
+              <input
+                matInput
+                type="email"
+                [(ngModel)]="email"
+                [ngModelOptions]="{standalone: true}"
+                required
+              />
+            </mat-form-field>
+          </ion-item>
+          <ion-item style="width: 100%; margin: auto" lines="none">
+            <mat-form-field
+              class="full-width"
+              appearance="outline"
+              style="width: 125%"
+            >
+              <mat-label>Password</mat-label>
+              <input
+                matInput
+                [type]="passwordType"
+                [(ngModel)]="password"
+                [ngModelOptions]="{standalone: true}"
+                required
+              />
+              <mat-icon
+                class="passwordIcon"
+                (click)="hideShowPassword()"
+                matSuffix
+                >{{ passwordIcon }}</mat-icon
+              >
+            </mat-form-field>
+          </ion-item>
+
+          <br />
+        </div>
+
+        <div class="action-button ion-padding">
+          <ion-button
+            color="success"
+            style="width: 100%; margin: auto"
+            expand="block"
+            type="submit"
+            >LOGIN</ion-button
+          >
+          <hr />
+          <ion-button
+            color="success"
+            style="width: 100%; margin: auto"
+            expand="block"
+            fill="outline"
+            (click)="navReg()"
+            routerDirection="root"
+            >REGISTER</ion-button
+          >
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <ion-text color="secondary" class="ion-text-center">
+    <div class="ion-text-center">
+      <small>Version 1.1.1</small>
+    </div>
+  </ion-text>
+</ion-content>
