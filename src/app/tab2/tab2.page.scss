@@ -1,16 +1,51 @@
-* {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-weight: 350;
+.ripple-parent {
+  position: relative;
+  overflow: hidden;
+}
+.center {
+  // margin: auto;
+  // border: 3px solid green;
+  // padding: 10px;
+  font-family: "Inter";
+}
+.outer {
+  display: table;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
 }
 
-ion-grid {
-  margin-top: 20%;
+.middle {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.inner {
+  margin-left: auto;
+  margin-right: auto;
+  //   width: 400px;
+  /* Whatever width you want */
+}
+
+ion-icon {
+  --ion-margin-left: auto;
+  --ion-margin-right: auto;
+  text-align: center;
 }
 
 ion-card {
-  margin-top: 15%;
-  width: 90%;
-  height: auto;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.8);
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  ion-card-subtitle {
+    font-family: "Inter Semi-bold";
+  }
+  ion-card-title {
+    font-family: "Inter Semi-bold";
+  }
+  ion-card-content {
+    font-family: "Inter";
+  }
 }
