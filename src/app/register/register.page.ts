@@ -29,7 +29,7 @@ export class RegisterPage implements OnInit {
     public dataService: DataService,
     private formBuilder: FormBuilder,
     private _route: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     // this.sendfile = this.fb.group({
@@ -97,32 +97,74 @@ export class RegisterPage implements OnInit {
   }
 
   onSubmit() {
-    this.registrationform.controls['otp'].setValue('sdsss');
+    let letters = [
+      'A',
+      'B',
+      'C',
+      'D',
+      'E',
+      'F',
+      'G',
+      'H',
+      'I',
+      'J',
+      'K',
+      'L',
+      'M',
+      'N',
+      'O',
+      'P',
+      'Q',
+      'R',
+      'S',
+      'T',
+      'U',
+      'V',
+      'W',
+      'X',
+      'Y',
+      'Z',
+    ];
+    let numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+
+    let code =
+      letters[Math.floor(Math.random() * letters.length)] +
+      numbers[Math.floor(Math.random() * numbers.length)] +
+      letters[Math.floor(Math.random() * letters.length)] +
+      numbers[Math.floor(Math.random() * numbers.length)] +
+      letters[Math.floor(Math.random() * letters.length)];
+    // console.log(code);
+
+    this.registrationform.controls['otp'].setValue(code);
     this.registrationform.controls['body'].setValue(
       "<div style='background-color: antiquewhite;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;'><div style='padding: 5%'><img src='cid:Bloom'alt='Bloom Pod' width='10%' /><br /><h1>Verify your login</h1><br /><p>Below is the passcode:</p><u><h2>" +
         this.registrationform.value['otp'] +
         '</h2></u><h5>- Bloom Pod Administrator</h5></div></div>'
     );
 
-      let u_f = this.registrationform.value['firstname'];
-      let u_l = this.registrationform.value['lastname'];
-      let u_e = this.registrationform.value['email'];
-      let u_p = this.registrationform.value['password'];
-      let u_a = this.registrationform.value['address']; 
-      let body = this.registrationform.value['body'];
-      let otp = 'sdsss';
-  
+    let u_f = this.registrationform.value['firstname'];
+    let u_l = this.registrationform.value['lastname'];
+    let u_e = this.registrationform.value['email'];
+    let u_p = this.registrationform.value['password'];
+    let u_a = this.registrationform.value['address'];
+    let body = this.registrationform.value['body'];
+    let otp = 'sdsss';
+
     this.dataService
-    .processData(btoa('mailer').replace('=', ''), {email:u_e, body}, 2)
-      .subscribe((res: any)=>{
+      .processData(btoa('mailer').replace('=', ''), { email: u_e, body }, 2)
+      .subscribe((res: any) => {
         let payload = this.dataService.decrypt(res.a);
         console.log(payload);
-        if (payload.data == "Message has been sent") {
+        if (payload.data == 'Message has been sent') {
           this.dataService
-            .processData(btoa('register').replace('=', ''), {u_f, u_l, u_e, u_p, u_a, otp}, 2)
-              .subscribe((res: any)=>{
-                let payload = this.dataService.decrypt(res.a);
-              if (payload.status['message'] == "Registered successfully") {
+            .processData(
+              btoa('register').replace('=', ''),
+              { u_f, u_l, u_e, u_p, u_a, otp },
+              2
+            )
+            .subscribe((res: any) => {
+              let payload = this.dataService.decrypt(res.a);
+              if (payload.status['message'] == 'Registered successfully') {
                 // console.log(res.data);
                 this.presentToast(payload.status['message']);
                 // this.dismiss();
