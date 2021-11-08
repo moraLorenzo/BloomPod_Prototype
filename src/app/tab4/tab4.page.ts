@@ -10,6 +10,8 @@ import { UserService } from '../services/user.service';
   styleUrls: ['tab4.page.scss'],
 })
 export class Tab4Page {
+  username: string = 'Sample Username';
+  address: string = 'Sample address';
   constructor(
     private userService: UserService,
     private router: Router,

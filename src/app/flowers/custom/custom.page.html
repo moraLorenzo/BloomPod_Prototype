@@ -1,8 +1,8 @@
-<div class="center">
+<div class="center" style="width: 100%">
   <ion-card class="ion-activatable ripple-parent">
     <ion-card-header>
-      <ion-card-subtitle>Please choose</ion-card-subtitle>
-      <ion-card-title>Main Floral component</ion-card-title>
+      <ion-card-subtitle>Please fill</ion-card-subtitle>
+      <ion-card-title>Floral Datails</ion-card-title>
     </ion-card-header>
 
     <ion-ripple-effect></ion-ripple-effect>
@@ -10,44 +10,38 @@
 </div>
 
 <ion-content>
-  <!-- <ion-slides pager="false" [options]="slideOpts">
-    <ion-slide *ngFor="let flower of Flowers">
-      <ion-card style="width: 90%; height: 250px">
-        <ion-card-header>
-          <ion-card-subtitle>{{flower.name | titlecase}}</ion-card-subtitle>
+  <div class="form-group mx-auto mt-3" style="width: 95%">
+    <label for="selectInput">Determine Flower Quantity</label>
+    <select
+      id="selectInput"
+      class="form-select mt-2"
+      aria-label="Determine Flower Quantity"
+    >
+      <option selected>Flower Quantity</option>
+      <option value="1">Five (5)</option>
+      <option value="2">Eight (8)</option>
+      <option value="3">Twelve (12)</option>
+    </select>
+  </div>
 
-        </ion-card-header>
+  <div class="form-group mx-auto mt-5" style="width: 95%">
+    <label for="gridInput">Main Floral Component</label>
+    <ion-row id="gridInput">
+      <ion-col size="6" *ngFor="let flower of Flowers;let i = index;">
+        <ion-card (click)="goToComponentB(flower.name)">
+          <div class="card-title text-center mt-2">
+            {{ flower.name | titlecase }}
+          </div>
 
-        <ion-card-content>
-          <ion-card-subtitle (click)="goToComponentB(flower.name)">
-            <div>
-              <img
-                style="width: 100px; height: 90px; margin-top: 35px"
-                src="./../../../../assets/flowers/{{flower.name}}.png"
-                alt="{{flower.name}}"
-              />
-            </div>
-          </ion-card-subtitle>
-        </ion-card-content>
-      </ion-card>
-    </ion-slide>
-  </ion-slides> -->
-  <ion-row>
-    <ion-col size="6" *ngFor="let flower of Flowers;let i = index;">
-      <ion-card (click)="goToComponentB(flower.name)">
-        <div class="card-title text-center mt-2">
-          {{ flower.name | titlecase }}
-        </div>
-        <div class="img-container">
-          <!-- Block parent element -->
-          <img
-            style="width: 100px; height: 90px; margin-bottom: 25px"
-            src="./../../../../assets/flowers/{{flower.name}}.png"
-            alt="{{flower.name}}"
-          />
-          <br />
-        </div>
-      </ion-card>
-    </ion-col>
-  </ion-row>
+          <div class="card">
+            <img
+              src="http://localhost/bloompod_api/flowers/{{flower.name}}.png"
+              class="card-img-top p-3"
+              alt="{{flower.name}}"
+            />
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </div>
 </ion-content>

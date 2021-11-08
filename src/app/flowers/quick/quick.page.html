@@ -1,9 +1,51 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>quick</ion-title>
-  </ion-toolbar>
-</ion-header>
+<div class="center" style="width: 100%">
+  <ion-card class="ion-activatable ripple-parent">
+    <ion-card-header>
+      <ion-card-subtitle>Please fill</ion-card-subtitle>
+      <ion-card-title>Floral Datails</ion-card-title>
+    </ion-card-header>
+
+    <ion-ripple-effect></ion-ripple-effect>
+  </ion-card>
+</div>
 
 <ion-content>
+  <ion-content>
+    <div class="form-group mx-auto mt-5" style="width: 95%">
+      <label for="selectInput">Determine your Budget</label>
+      <select
+        id="selectInput"
+        class="form-select"
+        aria-label="Default select example"
+      >
+        <option selected>Filter Prices</option>
+        <option value="1">0-200</option>
+        <option value="2">200-400</option>
+        <option value="3">400-600</option>
+        <option value="3">600-Above</option>
+      </select>
+    </div>
 
+    <div class="container center mt-5">
+      <h1>Flower Bouquets</h1>
+
+      <ion-row>
+        <ion-col size="6" *ngFor="let flower of Flowers;let i = index;">
+          <ion-card (click)="goToComponentB(flower.name)">
+            <div class="card-title text-center mt-2">
+              {{ flower.name | titlecase }}
+            </div>
+
+            <div class="card">
+              <img
+                src="http://localhost/bloompod_api/flowers/{{flower.name}}.png"
+                class="card-img-top p-3"
+                alt="{{flower.name}}"
+              />
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-content>
 </ion-content>
