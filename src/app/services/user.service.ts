@@ -4,19 +4,60 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class UserService {
-  loggedIn: boolean = false;
+  public apiLink: string = 'http://localhost/bloompod_api/';
+
+  public name: string;
+  private token: string;
+  private email: string;
+  private userId: string;
+  private isLoggedIn: boolean = false;
+
+  user_obj: any;
 
   constructor() {}
 
-  isLoggedIn(): boolean {
-    return this.loggedIn;
+  getToken(): string {
+    return this.token;
+  }
+  getFullname(): string {
+    this.name = this.user_obj.user_fullname;
+    return this.name;
   }
 
-  setLoggedIn() {
-    this.loggedIn = true;
+  getEmail(): string {
+    return this.email;
+  }
+  getUserID(): string {
+    return this.userId;
+  }
+  isUserLoggedIn(): boolean {
+    return this.isLoggedIn;
+  }
+  setUserLoggedIn(name: string, token: string, id: string): void {
+    this.isLoggedIn = true;
+    this.name = name;
+    this.token = token;
+    this.userId = id;
+  }
+  setUserLoggedOut(): void {
+    this.isLoggedIn = false;
   }
 
-  setLoggedOut() {
-    this.loggedIn = false;
+  setUser(user_obj: any) {
+    this.user_obj = user_obj;
+    
+  }
+
+  getUser() {
+    return this.user_obj;
+  }
+
+  genHexString(len) {
+    const hex = '0123456789abcdef';
+    let output = '';
+    for (let i = 0; i < len; ++i) {
+      output += hex.charAt(Math.floor(Math.random() * hex.length));
+    }
+    return output;
   }
 }

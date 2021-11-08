@@ -26,7 +26,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {}
 
   ionViewWillEnter() {
-    if (this.userService.isLoggedIn()) {
+    if (this.userService.isUserLoggedIn()) {
       this.router.navigate(['tabs']);
     }
   }
@@ -51,56 +51,94 @@ export class LoginPage implements OnInit {
       this.passwordIcon === 'visibility_off' ? 'visibility' : 'visibility_off';
   }
 
-  async checkAccepted(): Promise<boolean> {
-    let param1 = this.email;
-    let param2 = this.password;
+  // async checkAccepted(): Promise<boolean> {
+  //   let param1 = this.email;
+  //   let param2 = this.password;
 
-    await this.dataService
-      .processData('doctoraccepted', { param1, param2 })
-      .then(async (res: any) => {
-        if (res.error) {
-          this.isAccepted = false;
-        } else if (res) {
-          this.isAccepted = true;
-        } else {
-          this.isAccepted = false;
-        }
-      });
+  //   await this.dataService
+  //     .processData('doctoraccepted', { param1, param2 })
+  //     .then(async (res: any) => {
+  //       if (res.error) {
+  //         this.isAccepted = false;
+  //       } else if (res) {
+  //         this.isAccepted = true;
+  //       } else {
+  //         this.isAccepted = false;
+  //       }
+  //     });
 
-    return this.isAccepted;
-  }
+  //   return this.isAccepted;
+  // }
 
-  public async checklogin(e) {
-    let param1 = e.target[0].value;
-    let param2 = e.target[1].value;
+  // public async checklogin(e) {
+  //   let param1 = e.target[0].value;
+  //   let param2 = e.target[1].value;
 
-    await this.dataService
-      .processData('logindoctor', { param1, param2 })
-      .then(async (res: any) => {
-        if (res.error) {
-          this.presentToast('Invalid Inputs');
-        } else {
-          let isAccepted = await this.checkAccepted();
-          if (isAccepted) {
-            window.sessionStorage.setItem('doctor_id', res.data.doctor_id);
-            window.sessionStorage.setItem('doctor_name', res.data.doctor_name);
-            this.presentToast(
-              'Successfully logged in ' +
-                window.sessionStorage.getItem('doctor_name')
-            );
-            this.email = '';
-            this.password = '';
-            this.passwordIcon = 'visibility_off';
-            this.userService.setLoggedIn();
+  //   await this.dataService
+  //     .processData('logindoctor', { param1, param2 })
+  //     .then(async (res: any) => {
+  //       if (res.error) {
+  //         this.presentToast('Invalid Inputs');
+  //       } else {
+  //         let isAccepted = await this.checkAccepted();
+  //         if (isAccepted) {
+  //           window.sessionStorage.setItem('doctor_id', res.data.doctor_id);
+  //           window.sessionStorage.setItem('doctor_name', res.data.doctor_name);
+  //           this.presentToast(
+  //             'Successfully logged in ' +
+  //               window.sessionStorage.getItem('doctor_name')
+  //           );
+  //           this.email = '';
+  //           this.password = '';
+  //           this.passwordIcon = 'visibility_off';
+  //           this.userService.setLoggedIn();
+  //           this.router.navigate(['tabs']);
+  //         } else {
+  //           this.presentToast('Account not yet Accepted');
+  //         }
+  //       }
+  //     })
+  //     .catch(async (err) => {
+  //       await this.presentToast('Invalid inputs');
+  //       // console.log(`login failed ${err}`);
+  //     });
+  // }
+
+  onSubmit(e) {
+    e.preventDefault();
+    let f = e.target.elements;
+    let email = e.target[0].value;
+    let password = e.target[1].value;
+
+    this.dataService
+      .processData(btoa('login').replace('=', ''), { email, password }, 2)
+      .subscribe(
+        (dt: any) => {
+          // console.log(dt.a);
+          let load = this.dataService.decrypt(dt.a);
+          // console.log(load.status);
+
+          if (load.status['remarks'] == 'success') {
+            this.userService.setUser(load.payload.name[0]);
+            console.log(load);
             this.router.navigate(['tabs']);
-          } else {
-            this.presentToast('Account not yet Accepted');
+          } else if (
+            load.status['remarks'] == 'failed' &&
+            load.status['message'] == 'Email not yet verified'
+          ) {
+            console.log(load.status['message']);
+            // this.presentPopover();
+          } else if (
+            load.status['remarks'] == 'failed' &&
+            load.status['message'] == 'Incorrect username or password'
+          ) {
+            console.log(load.status['message']);
           }
+
+        },
+        (er) => {
+          this.presentToast('Invalid Inputs');
         }
-      })
-      .catch(async (err) => {
-        await this.presentToast('Invalid inputs');
-        // console.log(`login failed ${err}`);
-      });
+      );
   }
 }

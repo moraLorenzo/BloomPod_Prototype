@@ -21,7 +21,7 @@ export class Tab3Page {
     private dataService: DataService,
     private alertController: AlertController
   ) {
-    this.getDoctor();
+    // this.getDoctor();
   }
 
   public async logout() {
@@ -39,7 +39,7 @@ export class Tab3Page {
         {
           text: 'Yes',
           handler: () => {
-            this.userService.setLoggedOut();
+            this.userService.setUserLoggedOut();
             this.router.navigate(['login']);
           },
         },
@@ -49,19 +49,19 @@ export class Tab3Page {
     await alert.present();
   }
 
-  public async getDoctor() {
-    let doctor_id = window.sessionStorage.getItem('doctor_id');
-    await this.dataService
-      .processData('getdoctor', {
-        doctor_id,
-      })
-      .then(async (res: any) => {
-        this.doctor = res.data[0]['doctor_name'];
-        this.email = res.data[0]['doctor_email'];
-        this.specialization = res.data[0]['doctor_specialization'];
-        this.address = res.data[0]['doctor_address'];
+  // public async getDoctor() {
+  //   let doctor_id = window.sessionStorage.getItem('doctor_id');
+  //   await this.dataService
+  //     .processData('getdoctor', {
+  //       doctor_id,
+  //     })
+  //     .then(async (res: any) => {
+  //       this.doctor = res.data[0]['doctor_name'];
+  //       this.email = res.data[0]['doctor_email'];
+  //       this.specialization = res.data[0]['doctor_specialization'];
+  //       this.address = res.data[0]['doctor_address'];
 
-        console.log(res);
-      });
-  }
+  //       console.log(res);
+  //     });
+  // }
 }

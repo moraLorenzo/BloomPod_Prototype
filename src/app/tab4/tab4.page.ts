@@ -34,7 +34,7 @@ export class Tab4Page {
         {
           text: 'Yes',
           handler: () => {
-            this.userService.setLoggedOut();
+            this.userService.setUserLoggedOut();
             this.router.navigate(['login']);
           },
         },

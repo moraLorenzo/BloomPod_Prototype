@@ -26,12 +26,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('./register/register.module').then((m) => m.RegisterPageModule),
   },
-  {
-    path: 'edit',
-    loadChildren: () =>
-      import('./pages/edit/edit.module').then((m) => m.EditPageModule),
-    canActivate: [AuthGuard],
-  },
+  // {
+  //   path: 'edit',
+  //   loadChildren: () =>
+  //     import('./pages/edit/edit.module').then((m) => m.EditPageModule),
+  //   canActivate: [AuthGuard],
+  // },
   {
     path: 'tab4',
     loadChildren: () => import('./tab4/tab4.module').then( m => m.Tab4PageModule)

@@ -1,57 +1,94 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Doctor } from 'src/app/models/doctor';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { UserService } from '../user.service';
+import { DefaultImage } from '../data-schema';
+
+import * as CryptoJS from 'crypto-js';
+import aes from 'crypto-js/aes';
+import encHex from 'crypto-js/enc-hex';
+import padZeroPadding from 'crypto-js/pad-zeropadding';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  private url: string = 'http://192.168.100.128/elective1/';
 
-  constructor(private http: HttpClient) {}
+  version_number = '1.1.0';
 
-  public async getData() {
-    const URL = 'http://192.168.100.128/elective1/getdoctors';
-    const data = '';
-    const doctors = await this.http.post(URL, JSON.stringify(data)).toPromise();
-    // const test = await this.TestPromise();
-    console.log('Doctors: ', doctors);
-  }
+    private keyString = new DefaultImage();
+  constructor(
+    private http: HttpClient,
+    private userService: UserService
+  ) { }
 
-  public async newData(doctor: Doctor): Promise<Doctor> {
-    const formData = new FormData();
-    formData.append('doctor_name', doctor.doctor_name);
-    formData.append('doctor_email', doctor.doctor_email);
-    formData.append('doctor_password', doctor.doctor_password);
-    formData.append('doctor_specialization', doctor.doctor_specialization);
-    formData.append('doctor_address', doctor.doctor_address);
-    formData.append('registration_month', doctor.registration_month);
-
-    const URL = 'http://192.168.100.128/elective1/doctorimage';
-
-    if (doctor.doc_image) {
-      const posterFile = await fetch(doctor.doc_image);
-      const blob = await posterFile.blob();
-      formData.append('doc_image', blob);
-    }
-    return (await this.http.post(URL, formData).toPromise()) as Doctor;
-  }
-
-  public async processData(endpoint, data) {
+  request(endpoint, data) {
     try {
       return this.http
-        .post(this.url + endpoint, JSON.stringify(data))
+        .post(this.userService.apiLink + endpoint, JSON.stringify(data))
         .toPromise();
     } catch (err) {
       console.log(err);
     }
   }
 
-  formData(endpoint, data) {
-    return this.http.post(this.url + endpoint, data);
+  processData(api: string, load: any, sw: number) {
+    // console.log(load);
+
+    let payload  = { load: load, token: this.userService.getToken(), userid: this.userService.getUserID() }
+    switch(sw) {
+      case 1: 
+        return this.http.post(this.userService.apiLink+api, this.convertmessage(unescape(encodeURIComponent(JSON.stringify(payload)))));
+      break;
+      case 2:
+        return this.http.post(this.userService.apiLink+api, this.convertmessage(unescape(encodeURIComponent(JSON.stringify(load)))));
+      break;
+      case 3:
+        return this.http.post(this.userService.apiLink+api, load);
+      break;
+      default: break;
+    }
   }
 
-  // public TestPromise() {
-  //   return new Promise((resolve, reject) => {});
-  // }
+  decrypt(encryptedString) {
+    let key = this.keyString.defaultmessage;
+    let encryptMethod = 'AES-256-CBC';
+    let encryptLength = parseInt(encryptMethod.match(/\d+/)[0]);
+    let json = JSON.parse(
+      CryptoJS.enc.Utf8.stringify(CryptoJS.enc.Base64.parse(encryptedString))
+    );
+    let salt = CryptoJS.enc.Hex.parse(json.salt);
+    let iv = CryptoJS.enc.Hex.parse(json.iv);
+
+    let encrypted = json.ciphertext;
+
+    let iterations = parseInt(json.iterations);
+    if (iterations <= 0) {
+      iterations = 999;
+    }
+    let encryptMethodLength = encryptLength / 4;
+    let hashKey = CryptoJS.PBKDF2(key, salt, {
+      hasher: CryptoJS.algo.SHA512,
+      keySize: encryptMethodLength / 8,
+      iterations: iterations,
+    });
+
+    let decrypted = CryptoJS.AES.decrypt(encrypted, hashKey, {
+      mode: CryptoJS.mode.CBC,
+      iv: iv,
+    });
+    return JSON.parse(decrypted.toString(CryptoJS.enc.Utf8));
+  }
+
+  private convertmessage(msg) {
+    let keyString = this.userService.genHexString(32);
+    let ivString = this.userService.genHexString(32);
+    let key = encHex.parse(keyString);
+    let iv =  encHex.parse(ivString);
+    
+    return this.keyString.generateSalt()+iv+key+aes.encrypt(msg, key, {iv:iv, padding:padZeroPadding}).toString();
+  }
+
+  ger_ver() {
+    return this.version_number;
+  }
 }

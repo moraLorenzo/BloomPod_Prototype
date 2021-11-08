@@ -19,68 +19,32 @@ export class RegisterPage implements OnInit {
   passwordType: string = 'password';
   passwordIcon: string = 'visibility_off';
   sendfile: FormGroup;
+  public registrationform: FormGroup;
   sendto: string = 'enzomora@gmail.com';
-
-  isLinear = false;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-
-  locations: Location[] = [
-    { value: 'James L. Gordon Memorial Hospital' },
-    { value: 'Baypointe Hospital' },
-    { value: 'St. Jude Hospital' },
-    { value: 'Our Lady of Lourdes' },
-    { value: 'Mother and Child Hospital' },
-    { value: 'ZMMG Hospital' },
-  ];
-
-  doctorPayload: Doctor;
   imgURL = '../../assets/icon/addImage.png';
-
-  doctor_name: string;
-  doctor_password: string;
-  doctor_specialization: string;
-  doctor_address: string;
-  registration_month: string;
-  monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
 
   constructor(
     private camera: Camera,
     public toastController: ToastController,
-    public DataService: DataService,
-    private fb: FormBuilder,
-    private router: Router
-  ) {
-    console.log('Payload: ', this.doctorPayload);
-    this.doctorPayload = new Doctor();
-    console.log('Payload: ', this.doctorPayload);
-  }
+    public dataService: DataService,
+    private formBuilder: FormBuilder,
+    private _route: Router
+  ) { }
 
   ngOnInit() {
-    // this.firstFormGroup = this._formBuilder.group({
-    //   firstCtrl: ['', Validators.required],
+    // this.sendfile = this.fb.group({
+    //   email: ['', Validators.required],
+    //   reportfile: ['', Validators.required],
+    //   newfile: ['', Validators.required],
     // });
-    // this.secondFormGroup = this._formBuilder.group({
-    //   secondCtrl: ['', Validators.required],
-    // });
-
-    this.sendfile = this.fb.group({
-      email: ['', Validators.required],
-      reportfile: ['', Validators.required],
-      newfile: ['', Validators.required],
+    this.registrationform = this.formBuilder.group({
+      firstname: ['', [Validators.required]],
+      lastname: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      address: ['', [Validators.required]],
+      otp: ['', [Validators.required]],
+      body: ['', [Validators.required]],
     });
   }
 
@@ -132,61 +96,51 @@ export class RegisterPage implements OnInit {
       });
   }
 
-  public async regDoc() {
-    console.log(this.doctorPayload);
-    const thisMonth = this.monthNames[new Date().getMonth()];
-    this.doctorPayload.registration_month = thisMonth;
-    console.log(this.doctorPayload);
+  onSubmit() {
+    this.registrationform.controls['otp'].setValue('sdsss');
+    this.registrationform.controls['body'].setValue(
+      "<div style='background-color: antiquewhite;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;'><div style='padding: 5%'><img src='cid:Bloom'alt='Bloom Pod' width='10%' /><br /><h1>Verify your login</h1><br /><p>Below is the passcode:</p><u><h2>" +
+        this.registrationform.value['otp'] +
+        '</h2></u><h5>- Bloom Pod Administrator</h5></div></div>'
+    );
 
-    if (this.imgURL != '../../assets/icon/addImage.png') {
-      this.doctorPayload.doc_image = this.imgURL;
-    } else {
-      this.doctorPayload.doc_image = '';
-    }
-    console.log(this.imgURL);
+      let u_f = this.registrationform.value['firstname'];
+      let u_l = this.registrationform.value['lastname'];
+      let u_e = this.registrationform.value['email'];
+      let u_p = this.registrationform.value['password'];
+      let u_a = this.registrationform.value['address']; 
+      let body = this.registrationform.value['body'];
+      let otp = 'sdsss';
+  
+    this.dataService
+    .processData(btoa('mailer').replace('=', ''), {email:u_e, body}, 2)
+      .subscribe((res: any)=>{
+        let payload = this.dataService.decrypt(res.a);
+        console.log(payload);
+        if (payload.data == "Message has been sent") {
+          this.dataService
+            .processData(btoa('register').replace('=', ''), {u_f, u_l, u_e, u_p, u_a, otp}, 2)
+              .subscribe((res: any)=>{
+                let payload = this.dataService.decrypt(res.a);
+              if (payload.status['message'] == "Registered successfully") {
+                // console.log(res.data);
+                this.presentToast(payload.status['message']);
+                // this.dismiss();
+                this._route.navigate(['login']);
+              } else if (res.error) {
+                // console.log(res.error);
+                this.presentToast(res.error);
 
-    if (
-      this.doctorPayload.doctor_name &&
-      this.doctorPayload.doctor_email &&
-      this.doctorPayload.doctor_specialization &&
-      this.doctorPayload.doctor_address &&
-      this.doctorPayload.registration_month &&
-      this.doctorPayload.doc_image
-    ) {
-      const doc = await this.DataService.newData(this.doctorPayload);
-      this.presentToast(
-        'Successfully Registered, wait until our administrators accept your registration. Thank you'
-      );
-      this.router.navigate(['login']);
-    } else {
-      this.presentToast('All fields are required');
-    }
+                // this.dismiss();
+              }
+            });
+        } else if (res.error) {
+          // console.log(res.error);
+          this.presentToast(res.error);
 
-    // console.log('Doctor', doc);
-  }
-
-  changeClient(data) {
-    alert('selected --->' + this.locations[data].value);
-  }
-
-  public async checkDoc() {
-    let param1 = this.doctorPayload.doctor_name;
-    let param2 = this.doctorPayload.doctor_email;
-
-    this.DataService.processData('checkdoctor', {
-      param1,
-      param2,
-    }).then(async (res: any) => {
-      try {
-        if (res.error) {
-          this.presentToast('Invalid inputs');
-        } else {
-          await this.regDoc();
+          // this.dismiss();
         }
-      } catch (err) {
-        this.presentToast('Invalid inputs');
-      }
-    });
+      });
   }
 
   onFileChange(event) {
@@ -196,33 +150,6 @@ export class RegisterPage implements OnInit {
       this.sendfile.patchValue({
         newfile: reportfile,
       });
-    }
-  }
-
-  // async submitPdf(event: any) {
-  //   var formData = new FormData();
-  //   formData.append('email', this.sendfile.get('email').value);
-  //   formData.append('attachment', this.sendfile.get('newfile').value);
-  //   // console.log(this.sendfile.get('newfile').value);
-  //   console.log(this.sendfile.value);
-  // }
-
-  async submitPdf(event: any) {
-    var formData = new FormData();
-    formData.append('email', this.sendfile.get('email').value);
-    formData.append('attachment', this.sendfile.get('newfile').value);
-    console.log(this.sendfile.get('newfile').value);
-    try {
-      this.DataService.formData('sendemailattachment', formData).subscribe(
-        (res: any) => {
-          if (res.success) {
-            console.log(res.success);
-          } else {
-          }
-        }
-      );
-    } catch (error) {
-      console.log('err', error);
     }
   }
 }
