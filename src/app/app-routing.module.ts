@@ -44,6 +44,11 @@ const routes: Routes = [
     path: 'quick',
     loadChildren: () => import('./flowers/quick/quick.module').then( m => m.QuickPageModule)
   },
+  {
+    path: 'otp',
+    loadChildren: () => import('./popovers/otp/otp.module').then( m => m.OTPPageModule)
+  },
+
 ];
 @NgModule({
   imports: [

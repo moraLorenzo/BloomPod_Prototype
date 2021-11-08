@@ -1,0 +1,13 @@
+<ion-content>
+  <h6>Please enter OTP sent to your email</h6>
+  <div class="wrapper">
+    <div class="top">
+      <ng-otp-input
+        (onInputChange)="onOtpChange($event)"
+        [config]="{length:5}"
+      ></ng-otp-input>
+    </div>
+  </div>
+  <br />
+  <ion-button (click)="submit()">Submit</ion-button>
+</ion-content>
