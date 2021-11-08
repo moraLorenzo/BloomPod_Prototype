@@ -148,7 +148,7 @@ export class RegisterPage implements OnInit {
     let u_p = this.registrationform.value['password'];
     let u_a = this.registrationform.value['address'];
     let body = this.registrationform.value['body'];
-    let otp = 'sdsss';
+    let otp = code;
 
     this.dataService
       .processData(btoa('mailer').replace('=', ''), { email: u_e, body }, 2)
