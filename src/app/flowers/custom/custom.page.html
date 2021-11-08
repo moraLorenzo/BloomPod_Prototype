@@ -1,0 +1,53 @@
+<div class="center">
+  <ion-card class="ion-activatable ripple-parent">
+    <ion-card-header>
+      <ion-card-subtitle>Please choose</ion-card-subtitle>
+      <ion-card-title>Main Floral component</ion-card-title>
+    </ion-card-header>
+
+    <ion-ripple-effect></ion-ripple-effect>
+  </ion-card>
+</div>
+
+<ion-content>
+  <!-- <ion-slides pager="false" [options]="slideOpts">
+    <ion-slide *ngFor="let flower of Flowers">
+      <ion-card style="width: 90%; height: 250px">
+        <ion-card-header>
+          <ion-card-subtitle>{{flower.name | titlecase}}</ion-card-subtitle>
+
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-card-subtitle (click)="goToComponentB(flower.name)">
+            <div>
+              <img
+                style="width: 100px; height: 90px; margin-top: 35px"
+                src="./../../../../assets/flowers/{{flower.name}}.png"
+                alt="{{flower.name}}"
+              />
+            </div>
+          </ion-card-subtitle>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides> -->
+  <ion-row>
+    <ion-col size="6" *ngFor="let flower of Flowers;let i = index;">
+      <ion-card (click)="goToComponentB(flower.name)">
+        <div class="card-title text-center mt-2">
+          {{ flower.name | titlecase }}
+        </div>
+        <div class="img-container">
+          <!-- Block parent element -->
+          <img
+            style="width: 100px; height: 90px; margin-bottom: 25px"
+            src="./../../../../assets/flowers/{{flower.name}}.png"
+            alt="{{flower.name}}"
+          />
+          <br />
+        </div>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>
