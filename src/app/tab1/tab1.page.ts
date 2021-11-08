@@ -14,20 +14,44 @@ import { DataService } from '../services/data/data.service';
   styleUrls: ['tab1.page.scss'],
 })
 export class Tab1Page implements OnInit {
-  show: boolean = true;
+  greet: string = 'Good Day';
 
-  username: string = window.sessionStorage.getItem('doctor_name');
+  username: string = 'Sample User';
   schedules: any;
+
+  month: string = 'Sample Month';
+
+  months: any = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
 
   constructor(
     private dataService: DataService,
     private alertController: AlertController,
     public popoverController: PopoverController
-  ) {}
+  ) {
+    var myDate = new Date();
+    var hrs = myDate.getHours();
 
-  async ngOnInit() {
-    await this.showAccepted();
+    if (hrs < 12) this.greet = 'Good Morning';
+    else if (hrs >= 12 && hrs <= 17) this.greet = 'Good Afternoon';
+    else if (hrs >= 17 && hrs <= 24) this.greet = 'Good Evening';
+
+    this.month = this.months[new Date().getMonth()];
   }
+
+  async ngOnInit() {}
 
   ionViewWillEnter() {
     // console.log(window.sessionStorage.getItem('doctor_id'));
@@ -38,62 +62,7 @@ export class Tab1Page implements OnInit {
     setTimeout(() => {
       event.target.complete();
     }, 2000);
-    await this.showAccepted();
+
     console.log('Async operation has ended');
-  }
-
-  public async showAccepted() {
-    let doctor_name = window.sessionStorage.getItem('doctor_name');
-    await this.dataService
-      .processData('getdoctoraccepted', {
-        doctor_name,
-      })
-      .then(async (res: any) => {
-        if (res.error) {
-          this.show = false;
-        } else {
-          this.show = true;
-          this.schedules = res.data;
-          // console.log(this.schedules);
-        }
-      });
-  }
-
-  slideOpts = {
-    initialSlide: 1,
-    speed: 400,
-  };
-
-  public async presentPopover(name) {
-    const popover = await this.popoverController.create({
-      component: PopoverComponent,
-      componentProps: { name },
-      cssClass: 'my-custom-class',
-      translucent: true,
-    });
-    await popover.present();
-
-    const data = await popover.onWillDismiss();
-  }
-
-  Search(event) {
-    // console.log(event.detail.value);
-    if (event.detail.value == '') {
-      this.showAccepted();
-    } else {
-      this.schedules = this.schedules.filter((res) => {
-        return (
-          res.account_name
-            .toLocaleLowerCase()
-            .match(event.detail.value.toLocaleLowerCase()) ||
-          res.concern
-            .toLocaleLowerCase()
-            .match(event.detail.value.toLocaleLowerCase()) ||
-          res.appointment_date
-            .toLocaleLowerCase()
-            .match(event.detail.value.toLocaleLowerCase())
-        );
-      });
-    }
   }
 }

@@ -6,10 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./custom.page.scss'],
 })
 export class CustomPage implements OnInit {
+  Flowers = [{ name: 'rose' }, { name: 'sunflower' }, { name: 'lily' }];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
