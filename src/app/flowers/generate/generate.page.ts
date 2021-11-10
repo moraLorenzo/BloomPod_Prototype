@@ -188,6 +188,11 @@ export class GeneratePage implements OnInit {
       console.log(this.primary);
       console.log(this.permutations[this.cpt]);
     }
+    // let fp = this.Flowers[0];
+    if (this.primary)
+    console.log(this.Flowers[0]['flower_price']);
+    // }
+    // this.router.navigate(['confirmation']);
   
   }
 }
