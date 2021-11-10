@@ -33,12 +33,12 @@
         <ion-col size="6" *ngFor="let flower of Flowers;let i = index;">
           <ion-card (click)="goToComponentB(flower.name)">
             <div class="card-title text-center mt-2">
-              {{ flower.name | titlecase }}
+              {{ flower.quick_name | titlecase }}
             </div>
 
             <div class="card">
               <img
-                src="http://localhost/bloompod_api/flowers/{{flower.name}}.png"
+                src="../../../assets/quick/{{flower.quick_name}}.png"
                 class="card-img-top p-3"
                 alt="{{flower.name}}"
               />

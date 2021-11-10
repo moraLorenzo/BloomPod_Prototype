@@ -63,13 +63,15 @@ export class CustomPage implements OnInit {
     this.quantity = deviceValue;
   }
 
-  generate(str: any) {
-    console.log(str);
-    console.log(this.quantity);
+  generate(str: any, price: any) {
+    // console.log(str);
+    // console.log(this.quantity);
 
     if (this.quantity != 0) {
       this.router.navigate(['custom/generate'], {
-        state: { data: { flower_name: str, quantity: this.quantity } },
+        state: {
+          data: { flower_name: str, price: price, quantity: this.quantity },
+        },
       });
     } else {
       this.presentToast('Please Determine Flower Quantity');

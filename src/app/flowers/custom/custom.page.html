@@ -36,7 +36,7 @@
 
     <ion-row id="gridInput">
       <ion-col size="6" *ngFor="let flower of Flowers;let i = index;">
-        <ion-card (click)="generate(flower.flower_name)">
+        <ion-card (click)="generate(flower.flower_name, flower.flower_price)">
           <div class="card-title text-center mt-2">
             {{ flower.flower_name | titlecase | replaceUnderscore }}
           </div>
