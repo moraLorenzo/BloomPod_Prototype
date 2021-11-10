@@ -36,17 +36,17 @@ export class GeneratePage implements OnInit {
       .subscribe(
         (dt: any) => {
           let load = this.dataService.decrypt(dt.a);
-          console.log(load);
+          // console.log(load);
           this.Flowers = load.payload.data;
           for (let i = 0; i < this.Flowers.length; i++) {
-            console.log(this.Flowers[i]['flower_name']);
+            // console.log(this.Flowers[i]['flower_name']);
             this.floral.push(this.Flowers[i]['flower_name']);
           }
           // console.log(this.permutation(this.floral, 2));
           // Setup All Combinations with repetition
           this.permutations = this.permutation(this.floral, 2);
-          console.log(this.permutations);
-          console.log(this.floral[0]);
+          // console.log(this.permutations);
+          // console.log(this.floral[0]);
 
           if (this.option == 6) {
             this.topFlowers = this.fs.six(this.primary, this.floral[this.cpt]);

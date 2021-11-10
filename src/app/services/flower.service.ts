@@ -75,7 +75,7 @@ export class FlowersService implements PipeTransform {
   }
 
   six(mainflower, secondary) {
-    console.log(secondary);
+    // console.log(secondary);
     this.img = mainflower;
 
     let random = ['sunflower', 'lily'];
@@ -100,7 +100,7 @@ export class FlowersService implements PipeTransform {
   }
 
   nine(mainflower, secondary) {
-    console.log(secondary);
+    // console.log(secondary);
     this.img = mainflower;
 
     let random = ['sunflower', 'lily'];
