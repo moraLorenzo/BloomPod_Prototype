@@ -34,21 +34,31 @@ const routes: Routes = [
   // },
   {
     path: 'tab4',
-    loadChildren: () => import('./tab4/tab4.module').then( m => m.Tab4PageModule)
+    loadChildren: () =>
+      import('./tab4/tab4.module').then((m) => m.Tab4PageModule),
   },
   {
     path: 'custom',
-    loadChildren: () => import('./flowers/custom/custom.module').then( m => m.CustomPageModule)
+    loadChildren: () =>
+      import('./flowers/custom/custom.module').then((m) => m.CustomPageModule),
   },
   {
     path: 'quick',
-    loadChildren: () => import('./flowers/quick/quick.module').then( m => m.QuickPageModule)
+    loadChildren: () =>
+      import('./flowers/quick/quick.module').then((m) => m.QuickPageModule),
   },
   {
     path: 'otp',
-    loadChildren: () => import('./popovers/otp/otp.module').then( m => m.OTPPageModule)
+    loadChildren: () =>
+      import('./popovers/otp/otp.module').then((m) => m.OTPPageModule),
   },
-
+  {
+    path: 'custom/generate',
+    loadChildren: () =>
+      import('./flowers/generate/generate.module').then(
+        (m) => m.GeneratePageModule
+      ),
+  },
 ];
 @NgModule({
   imports: [

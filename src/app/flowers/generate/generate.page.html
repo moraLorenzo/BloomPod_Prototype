@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>generate</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <ion-slides pager="false" [options]="slideOpts">
+      <ion-slide id="foo">
+        <ion-card style="width: 330px">
+          <!-- <ion-card
+        id="foo"
+        style="width: 330px"
+        (click)="showAlert(flower.template)"
+      > -->
+          <!-- <ion-card style="width: 330px"> -->
+          <ion-card-header>
+            <ion-card-subtitle>1</ion-card-subtitle>
+            <ion-card-title>2</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <!-- <div [innerHtml]="flower.template"> -->
+            <div [innerHtml]="content"></div>
+            <!-- <div [innerHtml]="flower.template"></div> -->
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <ion-button>Select</ion-button>
+  <ion-button (click)="gen()">Generate</ion-button>
+  <!-- <div>foo</div>
+  <button type="button" (click)="screen()">shot</button> -->
+</ion-content>

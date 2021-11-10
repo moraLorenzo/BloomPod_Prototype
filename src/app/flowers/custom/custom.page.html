@@ -2,7 +2,7 @@
   <ion-card class="ion-activatable ripple-parent">
     <ion-card-header>
       <ion-card-subtitle>Please fill</ion-card-subtitle>
-      <ion-card-title>Floral Datails</ion-card-title>
+      <ion-card-title>Floral Details</ion-card-title>
     </ion-card-header>
 
     <ion-ripple-effect></ion-ripple-effect>
@@ -10,32 +10,40 @@
 </div>
 
 <ion-content>
-  <div class="form-group mx-auto mt-3" style="width: 95%">
+  <div class="form-group mx-auto mt-3" style="width: 93%">
     <label for="selectInput">Determine Flower Quantity</label>
     <select
       id="selectInput"
       class="form-select mt-2"
       aria-label="Determine Flower Quantity"
+      (change)="onChange($event.target.value)"
     >
       <option selected>Flower Quantity</option>
-      <option value="1">Five (5)</option>
-      <option value="2">Eight (8)</option>
-      <option value="3">Twelve (12)</option>
+      <option value="6">Six (6)</option>
+      <option value="9">Nine (9)</option>
+      <option value="12">Twelve (12)</option>
     </select>
   </div>
 
   <div class="form-group mx-auto mt-5" style="width: 95%">
     <label for="gridInput">Main Floral Component</label>
+    <!-- Default Searchbar -->
+    <ion-searchbar
+      placeholder="Search Flower"
+      (ionChange)="Search($event)"
+      autocorrect="on"
+    ></ion-searchbar>
+
     <ion-row id="gridInput">
       <ion-col size="6" *ngFor="let flower of Flowers;let i = index;">
-        <ion-card (click)="goToComponentB(flower.name)">
+        <ion-card (click)="generate(flower.flower_name)">
           <div class="card-title text-center mt-2">
-            {{ flower.name | titlecase }}
+            {{ flower.flower_name | titlecase | replaceUnderscore }}
           </div>
 
           <div class="card">
             <img
-              src="http://localhost/bloompod_api/flowers/{{flower.name}}.png"
+              src="http://localhost/bloompod_api/flowers/{{flower.flower_name}}.png"
               class="card-img-top p-3"
               alt="{{flower.name}}"
             />
