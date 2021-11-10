@@ -49,15 +49,15 @@ export class GeneratePage implements OnInit {
           console.log(this.floral[0]);
 
           if (this.option == 6) {
-            this.topFlowers = this.fs.six(this.primary, this.floral.shift());
+            this.topFlowers = this.fs.six(this.primary, this.floral[this.cpt]);
             this.content = this.topFlowers;
           } else if (this.option == 9) {
-            this.topFlowers = this.fs.nine(this.primary, this.floral.shift());
+            this.topFlowers = this.fs.nine(this.primary, this.floral[this.cpt]);
             this.content = this.topFlowers;
           } else if (this.option == 12) {
             this.topFlowers = this.fs.twelve(
               this.primary,
-              this.permutations.shift()
+              this.permutations[this.cpt]
             );
             this.content = this.topFlowers;
           }
@@ -176,16 +176,15 @@ export class GeneratePage implements OnInit {
   }
 
   confirm() {
-    console.log;
     if (this.option == 6) {
-      let cpt = 0;
-      if (cpt < this.floral.length - 1) {
-        cpt++;
-      } else {
-        cpt = 0;
-      }
       console.log(this.primary);
-      console.log(this.floral[cpt]);
+      console.log(this.floral[this.cpt]);
+    } else if (this.option == 9) {
+      console.log(this.primary);
+      console.log(this.floral[this.cpt]);
+    } else if (this.option == 12) {
+      console.log(this.primary);
+      console.log(this.permutations[this.cpt]);
     }
   }
 }

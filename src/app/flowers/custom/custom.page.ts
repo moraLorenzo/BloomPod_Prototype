@@ -36,7 +36,7 @@ export class CustomPage implements OnInit {
       .subscribe(
         (dt: any) => {
           let load = this.dataService.decrypt(dt.a);
-          // console.log(load);
+          console.log(load);
           this.Flowers = load.payload.data;
         },
         (er) => {
