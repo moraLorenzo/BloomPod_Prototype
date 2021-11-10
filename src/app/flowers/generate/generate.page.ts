@@ -1,5 +1,4 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data/data.service';
 import { FlowersService } from 'src/app/services/flower.service';
 
@@ -13,6 +12,8 @@ export class GeneratePage implements OnInit {
   primary: any;
   labelText: any;
 
+  cpt = 0;
+
   combination: any;
   content: any;
 
@@ -24,14 +25,8 @@ export class GeneratePage implements OnInit {
   constructor(
     private fs: FlowersService,
     private elementRef: ElementRef,
-    private dataService: DataService,
-    private _router: Router
+    private dataService: DataService
   ) {}
-
-  navCon(){
-    this._router.navigate(['confirmation']);
-  }
-  
 
   ionViewWillEnter() {
     this.primary = history.state.data.flower_name;
@@ -107,20 +102,52 @@ export class GeneratePage implements OnInit {
   // }
 
   gen() {
-    // this.combination = this.topFlowers.shift();
-    // console.log(this.combination.template);
-    // this.content = this.combination.template;
     if (this.option == 6) {
-      this.topFlowers = this.fs.six(this.primary, this.floral.shift());
+      if (this.cpt < this.floral.length - 1) {
+        this.cpt++;
+      } else {
+        this.cpt = 0;
+      }
+      this.topFlowers = this.fs.six(this.primary, this.floral[this.cpt]);
       this.content = this.topFlowers;
     } else if (this.option == 9) {
-      this.topFlowers = this.fs.nine(this.primary, this.floral.shift());
+      if (this.cpt < this.floral.length - 1) {
+        this.cpt++;
+      } else {
+        this.cpt = 0;
+      }
+      this.topFlowers = this.fs.nine(this.primary, this.floral[this.cpt]);
       this.content = this.topFlowers;
     } else if (this.option == 12) {
-      console.log(this.permutations[0][0]);
-      console.log(this.permutations[0][1]);
+      if (this.cpt < this.permutations.length - 1) {
+        this.cpt++;
+      } else {
+        this.cpt = 0;
+      }
+      this.topFlowers = this.fs.twelve(
+        this.primary,
+        this.permutations[this.cpt]
+      );
+      this.content = this.topFlowers;
     }
   }
+
+  // rev() {}
+  // fwd() {
+  //   // this.combination = this.topFlowers.shift();
+  //   // console.log(this.combination.template);
+  //   // this.content = this.combination.template;
+  //   if (this.option == 6) {
+  //     this.topFlowers = this.fs.six(this.primary, this.floral.shift());
+  //     this.content = this.topFlowers;
+  //   } else if (this.option == 9) {
+  //     this.topFlowers = this.fs.nine(this.primary, this.floral.shift());
+  //     this.content = this.topFlowers;
+  //   } else if (this.option == 12) {
+  //     this.topFlowers = this.fs.twelve(this.primary, this.permutations.shift());
+  //     this.content = this.topFlowers;
+  //   }
+  // }
 
   permutation(list, maxLen) {
     // Copy initial values as arrays
@@ -146,5 +173,25 @@ export class GeneratePage implements OnInit {
     };
     // Start with size 1 because of initial values
     return generate(perm, maxLen, 1);
+  }
+
+  confirm() {
+    console.log;
+    if (this.option == 6) {
+      let cpt = 0;
+      if (cpt < this.floral.length - 1) {
+        cpt++;
+      } else {
+        cpt = 0;
+      }
+      console.log(this.primary);
+      console.log(this.floral[cpt]);
+    } else if (this.option == 9) {
+      console.log(this.primary);
+      console.log(this.floral[this.cpt]);
+    } else if (this.option == 12) {
+      console.log(this.primary);
+      console.log(this.permutations[this.cpt]);
+    }
   }
 }
