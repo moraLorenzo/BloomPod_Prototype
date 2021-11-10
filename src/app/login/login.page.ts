@@ -123,7 +123,7 @@ export class LoginPage implements OnInit {
 
           if (load.status['remarks'] == 'success') {
             this.userService.setUser(load.payload.name[0]);
-            console.log(load);
+            console.log(load.payload.name[0]);
             this._router.navigate(['tabs']);
           } else if (
             load.status['remarks'] == 'failed' &&

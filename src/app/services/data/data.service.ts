@@ -45,6 +45,9 @@ export class DataService {
       case 3:
         return this.http.post(this.userService.apiLink+api, load);
       break;
+      case 4:
+        return this.http.get(this.userService.apiLink+api, load);
+      break;
       default: break;
     }
   }

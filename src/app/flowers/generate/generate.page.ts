@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data/data.service';
 import { FlowersService } from 'src/app/services/flower.service';
 
@@ -23,8 +24,14 @@ export class GeneratePage implements OnInit {
   constructor(
     private fs: FlowersService,
     private elementRef: ElementRef,
-    private dataService: DataService
+    private dataService: DataService,
+    private _router: Router
   ) {}
+
+  navCon(){
+    this._router.navigate(['confirmation']);
+  }
+  
 
   ionViewWillEnter() {
     this.primary = history.state.data.flower_name;

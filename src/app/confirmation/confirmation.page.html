@@ -1,0 +1,55 @@
+
+
+<ion-content>
+
+
+
+  <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <ion-grid>
+          <ion-row>
+
+          <ion-card class="ion-activatable ripple-parent" >
+            <ion-card-header style="margin: auto; text-align: left">
+              <img src="./assets/icon/Bloom.png">
+            </ion-card-header>
+            <ion-ripple-effect></ion-ripple-effect>
+          </ion-card>
+
+            <ion-card class="ion-activatable ripple-parent" >
+              <ion-card-header style="margin: auto; text-align: left">
+                <ion-card-title>Bouquet Name</ion-card-title>
+              </ion-card-header>
+
+              <ion-card-content>
+
+                <span style="font-size: 20px;">Price:</span>  <br>  
+                <div style="border: solid 1px; margin-top: 10px;">
+                <b style="font-size: 18px;">Descrption:</b>  
+                <p>Lorem Ipsum is simply dummy text of the printing and 
+                  typesetting industry. Lorem Ipsum has been the industry's 
+                  standard dummy text ever since the 1500s, when an unknown 
+                  printer took a galley of type and scrambled it to make a type 
+                  specimen book.</p>
+                </div>           
+                  
+              </ion-card-content>
+              <ion-ripple-effect></ion-ripple-effect>
+            </ion-card>
+          </ion-row>
+
+          <ion-row style="justify-content: center">
+            <ion-button>Checkout</ion-button>
+            <ion-button (click)="profile()">Add to Cart</ion-button>
+          </ion-row>
+
+          <ion-row style="justify-content: center; width: 100%;">
+            <ion-button>Back</ion-button>
+          </ion-row>
+
+        </ion-grid>
+      </div>
+    </div>
+  </div>
+</ion-content>

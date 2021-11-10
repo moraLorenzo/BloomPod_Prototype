@@ -12,13 +12,24 @@ import { UserService } from '../services/user.service';
 export class Tab4Page {
   username: string = 'Sample Username';
   address: string = 'Sample address';
+  userId: any = '38';
+  orders: any;
+  status: any;
+  
   constructor(
     private userService: UserService,
     private router: Router,
     private dataService: DataService,
     private alertController: AlertController
   ) {
-    this.getDoctor();
+    this.getOrders(this.userId);
+    
+    // this.userService.getFullname();
+  }
+
+  navHistory(order){
+    console.log("moved");
+    console.log(order);
   }
 
   public async logout() {
@@ -46,7 +57,17 @@ export class Tab4Page {
     await alert.present();
   }
 
-  public async getDoctor() {}
+  getOrders(id) {
+    let user_id = id;
+    // console.log(user_id);
+    this.dataService.processData(btoa('getOrders').replace('=', ''), { user_id }, 2)
+      .subscribe((dt: any) => {
+        let load = this.dataService.decrypt(dt.a);
+        this.orders = load.payload.orders;
+        console.log(this.orders);
+        this.status = this.orders[0].order_status;
+  });
+}
 
   doRefresh(e: any) {
     console.log('Begin async operation');

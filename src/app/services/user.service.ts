@@ -28,6 +28,7 @@ export class UserService {
     return this.email;
   }
   getUserID(): string {
+    // this.userId = this.user_obj.user_id;
     return this.userId;
   }
   isUserLoggedIn(): boolean {
@@ -45,7 +46,6 @@ export class UserService {
 
   setUser(user_obj: any) {
     this.user_obj = user_obj;
-    
   }
 
   getUser() {

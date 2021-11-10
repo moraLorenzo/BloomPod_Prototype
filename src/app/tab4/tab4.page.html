@@ -29,5 +29,115 @@
     </ion-fab-button>
   </ion-fab>
 
-  <ion-content style="top: 20%" [fullscreen]="true"> </ion-content>
+  <ion-content style="top: 10%" [fullscreen]="true"> 
+  
+    <!-- <ion-row style="border: solid 1px">
+      <ion-col>
+      <ion-label >header</ion-label>
+      </ion-col>
+    </ion-row>
+  
+    <ion-row style="border: solid 1px">
+      <ion-col >
+      <ion-label >row</ion-label>
+      </ion-col>
+    </ion-row>
+  
+    <ion-row style="border: solid 1px">
+      <ion-col>
+      <ion-label >row</ion-label>
+      </ion-col>
+    </ion-row> -->
+
+  <ion-card>
+    <table style="width: 100%; text-align: center;" >   
+      
+      <thead style="border-bottom: solid 1px;"> 
+      <tr>
+        <h3>To Pay</h3>
+      </tr>
+      </thead>
+      <tr style="border-bottom: solid 1px;">
+        <!-- <th>Name</th> -->
+        <th>Name</th>
+        <th>Price</th>
+        <th>Address</th>
+        <th>Status</th>
+      </tr>
+      
+      <tbody class="clickable-row" *ngFor = "let order of orders" style="border-bottom: solid 1px;" >
+      <tr *ngIf= "status == 'toPay'" (click)="navHistory(order)">
+        <!-- <td>{{ username }}</td> -->
+        <td>{{ status }}</td>
+        <td>{{ order.order_price }}</td>
+        <td>{{ order.order_address }}</td>
+        <td>{{ order.order_status }}</td>
+      </tr>
+      </tbody>
+
+    </table>
+  </ion-card>
+  
+  <ion-card>
+    <table style="width: 100%; text-align: center;">   
+      
+      <thead style="border-bottom: solid 1px;"> 
+      <tr>
+        <h3>To Delivered/PickUp</h3>
+      </tr>
+      </thead>
+      <tr style="border-bottom: solid 1px;">
+        <!-- <th>Name</th> -->
+        <th>Name</th>
+        <th>Price</th>
+        <th>Address</th>
+        <th>Status</th>
+      </tr>
+      
+      <tbody class="clickable-row" *ngFor = "let order of orders" style="border-bottom: solid 1px;">
+      <tr (click)="navHistory(order)">
+        <!-- <td>{{ username }}</td> -->
+        <td>{{ order.order_flower }}</td>
+        <td>{{ order.order_price }}</td>
+        <td>{{ order.order_address }}</td>
+        <td>{{ order.order_status }}</td>
+      </tr>
+      </tbody>
+
+    </table>
+  </ion-card>
+
+  <ion-card>
+    <table style="width: 100%; text-align: center;">   
+      
+      <thead style="border-bottom: solid 1px;"> 
+      <tr>
+        <h3>Completed</h3>
+      </tr>
+      </thead>
+      <tr style="border-bottom: solid 1px;">
+        <!-- <th>Name</th> -->
+        <th>Name</th>
+        <th>Price</th>
+        <th>Address</th>
+        <th>Status</th>
+      </tr>
+      
+      <tbody class="clickable-row" *ngFor = "let order of orders" style="border-bottom: solid 1px;">
+      <tr (click)="navHistory(order)">
+        <!-- <td>{{ username }}</td> -->
+        <td>{{ order.order_flower }}</td>
+        <td>{{ order.order_price }}</td>
+        <td>{{ order.order_address }}</td>
+        <td>{{ order.order_status }}</td>
+      </tr>
+      </tbody>
+
+    </table>
+  </ion-card>
+
+  
+
+  </ion-content>
+
 </ion-content>
