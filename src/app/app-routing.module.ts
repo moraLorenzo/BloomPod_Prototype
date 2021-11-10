@@ -61,12 +61,11 @@ const routes: Routes = [
   },
   {
     path: 'confirmation',
-    loadChildren: () => 
-      import('./confirmation/confirmation.module').then( 
+    loadChildren: () =>
+      import('./confirmation/confirmation.module').then(
         (m) => m.ConfirmationPageModule
       ),
   },
-
 ];
 @NgModule({
   imports: [
