@@ -5,32 +5,47 @@
 </ion-header>
 
 <ion-content>
-  <div>
-    <ion-slides pager="false" [options]="slideOpts">
-      <ion-slide id="foo">
-        <ion-card style="width: 330px">
-          <!-- <ion-card
-        id="foo"
-        style="width: 330px"
-        (click)="showAlert(flower.template)"
-      > -->
-          <!-- <ion-card style="width: 330px"> -->
-          <ion-card-header>
-            <ion-card-subtitle>1</ion-card-subtitle>
-            <ion-card-title>2</ion-card-title>
-          </ion-card-header>
+  <!-- <ion-fab horizontal="start" vertical="center" slot="fixed">
+    <ion-fab-button color="light" (click)="rev()">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-fab horizontal="end" vertical="center" slot="fixed">
+    <ion-fab-button color="light" (click)="fwd()">
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab> -->
 
-          <ion-card-content>
-            <!-- <div [innerHtml]="flower.template"> -->
-            <div [innerHtml]="content"></div>
-            <!-- <div [innerHtml]="flower.template"></div> -->
-          </ion-card-content>
-        </ion-card>
-      </ion-slide>
-    </ion-slides>
+  <!--  -->
+  <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <div>
+          <ion-slides pager="false" [options]="slideOpts">
+            <ion-slide id="foo">
+              <ion-card style="width: 330px">
+                <ion-card-header> </ion-card-header>
+
+                <ion-card-content>
+                  <div [innerHtml]="content"></div>
+                </ion-card-content>
+              </ion-card>
+            </ion-slide>
+          </ion-slides>
+        </div>
+        <div class="container mt-5">
+          <div class="row">
+            <div class="col">
+              <ion-button expand="block" (click)="confirm()"
+                >Confirm</ion-button
+              >
+            </div>
+            <div class="col">
+              <ion-button expand="block" (click)="gen()">Generate</ion-button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <ion-button (click)="navCon()">Select</ion-button>
-  <ion-button (click)="gen()">Generate</ion-button>
-  <!-- <div>foo</div>
-  <button type="button" (click)="screen()">shot</button> -->
 </ion-content>

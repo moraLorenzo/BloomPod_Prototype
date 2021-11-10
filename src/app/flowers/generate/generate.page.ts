@@ -186,12 +186,6 @@ export class GeneratePage implements OnInit {
       }
       console.log(this.primary);
       console.log(this.floral[cpt]);
-    } else if (this.option == 9) {
-      console.log(this.primary);
-      console.log(this.floral[this.cpt]);
-    } else if (this.option == 12) {
-      console.log(this.primary);
-      console.log(this.permutations[this.cpt]);
     }
   }
 }
