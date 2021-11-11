@@ -1,9 +1,66 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>mode</ion-title>
-  </ion-toolbar>
-</ion-header>
+<div class="center" style="width: 100%">
+  <ion-card class="ion-activatable ripple-parent">
+    <ion-card-header>
+      <ion-card-subtitle>Please fill</ion-card-subtitle>
+      <ion-card-title>Floral Details</ion-card-title>
+    </ion-card-header>
+
+    <ion-ripple-effect></ion-ripple-effect>
+  </ion-card>
+</div>
 
 <ion-content>
+  <div class="form-group mx-auto mt-3" style="width: 93%">
+    <label for="selectInput">Determine Flower Quantity</label>
+    <select
+      id="selectInput"
+      class="form-select mt-2"
+      aria-label="Determine Flower Quantity"
+      (change)="onChange($event.target.value)"
+    >
+      <option selected disabled>Mode of Order</option>
+      <option value="Delivery">Delivery</option>
+      <option value="Pick Up">Pick Up</option>
+    </select>
+  </div>
+  <br />
+  <form ngNativeValidate *ngIf="mode == 'Delivery'" (submit)="onSubmit($event)">
+    <div class="form-group">
+      <label>Address</label>
+      <input type="text" class="form-control" required />
+    </div>
 
+    <div class="form-group">
+      <label>Landmark</label>
+      <input type="text" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+      <label>Date and Time</label>
+      <input type="text" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+      <label>Contact Number</label>
+      <input type="text" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-info btn-lg btn-block">Submit</button>
+    <br />
+  </form>
+
+  <form ngNativeValidate *ngIf="mode == 'Pick Up'" (submit)="onSubmit($event)">
+    <div class="form-group">
+      <label>Date and Time</label>
+      <input type="text" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+      <label>Contact Number</label>
+      <input type="text" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-info btn-lg btn-block">Submit</button>
+    <br />
+  </form>
 </ion-content>

@@ -65,19 +65,12 @@ const routes: Routes = [
       import('./confirmation/confirmation.module').then(
         (m) => m.ConfirmationPageModule
       ),
-  },  {
+  },
+  {
     path: 'mode',
-    loadChildren: () => import('./mode/mode/mode.module').then( m => m.ModePageModule)
+    loadChildren: () =>
+      import('./mode/mode/mode.module').then((m) => m.ModePageModule),
   },
-  {
-    path: 'delivery',
-    loadChildren: () => import('./mode/delivery/delivery.module').then( m => m.DeliveryPageModule)
-  },
-  {
-    path: 'pickup',
-    loadChildren: () => import('./mode/pickup/pickup.module').then( m => m.PickupPageModule)
-  },
-
 ];
 @NgModule({
   imports: [
