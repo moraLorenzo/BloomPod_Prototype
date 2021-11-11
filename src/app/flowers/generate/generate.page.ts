@@ -11,6 +11,7 @@ import { FlowersService } from 'src/app/services/flower.service';
 export class GeneratePage implements OnInit {
   topFlowers: any;
   primary: any;
+  primary_price: any;
   labelText: any;
 
   cpt = 0;
@@ -18,7 +19,7 @@ export class GeneratePage implements OnInit {
   combination: any;
   content: any;
 
-  Flowers = ['rose', 'lily', 'sunflower'];
+  Flowers: any;
 
   floral = [];
   option: any;
@@ -27,11 +28,13 @@ export class GeneratePage implements OnInit {
     private fs: FlowersService,
     private elementRef: ElementRef,
     private dataService: DataService,
-    private router: Router,
+    private router: Router
   ) {}
 
   ionViewWillEnter() {
+    console.log(history.state.data);
     this.primary = history.state.data.flower_name;
+    this.primary_price = history.state.data.price;
     this.option = history.state.data.quantity;
     this.dataService
       .processData(btoa('get_flowers').replace('=', ''), null, 2)
@@ -179,14 +182,97 @@ export class GeneratePage implements OnInit {
 
   confirm() {
     if (this.option == 6) {
-      console.log(this.primary);
-      console.log(this.floral[this.cpt]);
+      let price = 0;
+
+      console.log(this.primary, this.primary_price);
+
+      this.Flowers.forEach((element) => {
+        if (element.flower_name == this.floral[this.cpt]) {
+          price = element.flower_price;
+        }
+      });
+
+      console.log(this.floral[this.cpt], price);
+
+      this.router.navigate(['confirmation'], {
+        state: {
+          data: {
+            quantity: 6,
+            primary: this.primary,
+            primary_price: this.primary_price,
+            secondary: this.floral[this.cpt],
+            secondary_price: price,
+          },
+        },
+      });
     } else if (this.option == 9) {
-      console.log(this.primary);
-      console.log(this.floral[this.cpt]);
+      let price = 0;
+
+      console.log(this.primary, this.primary_price);
+
+      this.Flowers.forEach((element) => {
+        if (element.flower_name == this.floral[this.cpt]) {
+          price = element.flower_price;
+        }
+      });
+
+      console.log(this.floral[this.cpt], price);
+      this.router.navigate(['confirmation'], {
+        state: {
+          data: {
+            quantity: 9,
+            primary: this.primary,
+            primary_price: this.primary_price,
+            secondary: this.floral[this.cpt],
+            secondary_price: price,
+          },
+        },
+      });
     } else if (this.option == 12) {
-      console.log(this.primary);
-      console.log(this.permutations[this.cpt]);
+      // console.log(this.primary);
+      // console.log(this.primary_price);
+
+      // console.log(this.permutations[this.cpt]);
+
+      let secondary_price = 0;
+      let tertiary_price = 0;
+
+      console.log(this.primary, this.primary_price);
+
+      // console.log(this.permutations[this.cpt]);
+      this.permutations.forEach((element) => {
+        if (element == this.permutations[this.cpt]) {
+          // finding price of secondary flower
+
+          this.Flowers.forEach((secondary) => {
+            if (secondary.flower_name == element[0]) {
+              secondary_price = secondary.flower_price;
+            }
+          });
+          // finding price of tertiary flower
+          this.Flowers.forEach((tertiary) => {
+            if (tertiary.flower_name == element[1]) {
+              tertiary_price = tertiary.flower_price;
+            }
+          });
+        }
+      });
+      console.log('Secondary: ', secondary_price);
+      console.log('Tertiary: ', tertiary_price);
+
+      this.router.navigate(['confirmation'], {
+        state: {
+          data: {
+            quantity: 12,
+            primary: this.primary,
+            primary_price: this.primary_price,
+            secondary: this.permutations[this.cpt][0],
+            secondary_price: secondary_price,
+            tertiary: this.permutations[this.cpt][1],
+            tertiary_price: tertiary_price,
+          },
+        },
+      });
     }
   }
 }
