@@ -78,7 +78,7 @@ export class Tab4Page implements OnInit {
       .subscribe((dt: any) => {
         let load = this.dataService.decrypt(dt.a);
         // console.log(load);
-        this.orders = load.payload.orders;
+        this.orders = load.payload.orders.reverse();
         // console.log(this.orders);
         this.status = this.orders[0].order_status;
       });
