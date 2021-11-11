@@ -67,9 +67,15 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'mode',
+    loadChildren: () =>
+      import('./mode/mode/mode.module').then((m) => m.ModePageModule),
+  },
+  {
     path: 'toPay',
     loadChildren: () => import('./pages/to-pay/to-pay.module').then( m => m.ToPayPageModule)
-  },  {
+  },
+  {
     path: 'completed',
     loadChildren: () => import('./pages/completed/completed.module').then( m => m.CompletedPageModule)
   },
@@ -81,9 +87,6 @@ const routes: Routes = [
     path: 'confirmcart',
     loadChildren: () => import('./pages/confirmcart/confirmcart.module').then( m => m.ConfirmcartPageModule)
   },
-
-
-
 ];
 @NgModule({
   imports: [

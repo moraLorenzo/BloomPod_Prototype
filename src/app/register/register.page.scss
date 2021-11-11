@@ -23,10 +23,6 @@ span {
   color: gray;
 }
 
-.wrapper {
-  font-family: "Inter Semi-bold";
-}
-
 .bloom {
   position: absolute;
   width: 80px;
@@ -38,10 +34,6 @@ span {
   padding: 20%;
 }
 
-form {
-  font-family: "Inter Semi-bold";
-}
-
 .ripple-parent {
   position: relative;
   overflow: hidden;
@@ -50,7 +42,6 @@ form {
   // margin: auto;
   // border: 3px solid green;
   // padding: 10px;
-  font-family: "Inter";
 }
 .outer {
   padding: 3%;
@@ -82,15 +73,6 @@ ion-card {
   width: 95%;
   margin-left: auto;
   margin-right: auto;
-  ion-card-subtitle {
-    font-family: "Inter Semi-bold";
-  }
-  ion-card-title {
-    font-family: "Inter Semi-bold";
-  }
-  ion-card-content {
-    font-family: "Inter";
-  }
 }
 
 .top {
@@ -98,7 +80,6 @@ ion-card {
 }
 
 h1 {
-  font-family: "Inter Semi-bold";
   margin-left: 5%;
 }
 .right {

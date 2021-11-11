@@ -13,9 +13,11 @@ import { UserService } from '../services/user.service';
 export class Tab4Page implements OnInit {
   username: string = 'Sample Username';
   address: string = 'Sample address';
-  userId: any = '38';
+  userId: any;
   orders: any;
   status: any;
+
+  user_obj: any;
 
   constructor(
     private userService: UserService,
@@ -27,10 +29,15 @@ export class Tab4Page implements OnInit {
   }
 
   ngOnInit() {
-    this.getOrders(this.userId);
+    // this.getOrders(this.userId);
   }
 
   ionViewWillEnter() {
+    this.user_obj = this.userService.getUser();
+    this.username =
+      this.user_obj.user_firstname + ' ' + this.user_obj.user_lastname;
+    this.address = this.user_obj.user_address;
+    this.userId = this.user_obj.user_id;
     this.getOrders(this.userId);
   }
 
@@ -87,15 +94,14 @@ export class Tab4Page implements OnInit {
 
   getOrders(id) {
     let user_id = id;
-    console.log(user_id);
+    // console.log(user_id);
     this.dataService
       .processData(btoa('getOrders').replace('=', ''), { user_id }, 2)
       .subscribe((dt: any) => {
         let load = this.dataService.decrypt(dt.a);
         // console.log(load);
-        this.orders = load.payload.orders;
-        this.userService.setOrders(this.orders);
-        console.log(this.orders);
+        this.orders = load.payload.orders.reverse();
+        // console.log(this.orders);
         this.status = this.orders[0].order_status;
       });
   }
