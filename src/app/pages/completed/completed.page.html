@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Purchases</ion-title>
+    <ion-router-link (click)="back()" slot="end" class="underline" style="margin: 10px;">Back</ion-router-link>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div *ngFor="let order of orders">
+      <ion-list *ngIf="order.order_status == 'completed'">
+        <ion-item  (click)="navHistory(order)" class="ion-activatable ripple-parent">
+          
+          <ion-avatar slot="start">
+            <img src=".\assets\icon\Bloom.png">
+          </ion-avatar>
+          <ion-label>
+            <h2>{{order.order_flower}}</h2>
+            <h3>{{order.order_totalprice}}</h3>
+            <h3>{{order.order_status}}</h3>
+          </ion-label>
+
+          <ion-ripple-effect></ion-ripple-effect>
+        </ion-item>
+      </ion-list>
+    </div>
+</ion-content>

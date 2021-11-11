@@ -166,19 +166,19 @@
 
 <div style="display: flex; justify-content: center ; margin-top: 5%;margin-bottom: 5%;">
   <ion-fab style="left: 50px;">
-    <ion-fab-button (click)="logout()" color="dark">
+    <ion-fab-button (click)="toPay()" color="dark">
       <ion-icon name="checkmark-outline"></ion-icon>
     </ion-fab-button>To Pay
   </ion-fab>
 
   <ion-fab>
-    <ion-fab-button (click)="logout()" color="dark">
+    <ion-fab-button (click)="service()" color="dark">
       <ion-icon name="rose-outline"></ion-icon>
     </ion-fab-button>Service
   </ion-fab>
 
   <ion-fab style="right: 30px;text-align: center;">
-    <ion-fab-button (click)="logout()" color="dark">
+    <ion-fab-button (click)="completed()" color="dark">
       <ion-icon name="bag-check-outline"></ion-icon>
     </ion-fab-button>Completed
   </ion-fab>
@@ -191,18 +191,22 @@
       </ion-list-header>
     </ion-item>
 
-    <ion-list *ngFor="let order of orders" >
-      <ion-item *ngIf="order.order_status == 'bookmark'" (click)="navHistory(order)" class="ion-activatable ripple-parent">
-        <ion-avatar slot="start">
-          <img src=".\assets\icon\Bloom.png">
-        </ion-avatar>
-        <ion-label >
-          <h2>{{order.order_flower}}</h2>
-          <h3>{{order.order_totalprice}}</h3>
-        </ion-label>
-        <ion-ripple-effect></ion-ripple-effect>
-      </ion-item>
-    </ion-list>
+    <div *ngFor="let order of orders">
+      <ion-list *ngIf="order.order_status == 'bookmark'">
+        <ion-item  (click)="confirmcart(order)" class="ion-activatable ripple-parent">
+          
+          <ion-avatar slot="start">
+            <img src=".\assets\icon\Bloom.png">
+          </ion-avatar>
+          <ion-label>
+            <h2>{{order.order_flower}}</h2>
+            <h3>{{order.order_totalprice}}</h3>
+          </ion-label>
+
+          <ion-ripple-effect></ion-ripple-effect>
+        </ion-item>
+      </ion-list>
+    </div>
   </div>
 
 </ion-content>

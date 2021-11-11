@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { DataService } from '../services/data/data.service';
 import { UserService } from '../services/user.service';
+// import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab4',
@@ -33,9 +34,30 @@ export class Tab4Page implements OnInit {
     this.getOrders(this.userId);
   }
 
-  navHistory(order) {
-    console.log('moved');
-    console.log(order);
+  confirmcart(order) {
+    // console.log(order);
+    this.router.navigate(['confirmcart'], {
+      state: {
+        data: {
+          order
+        },
+      },
+    });
+  }
+  
+  toPay() {
+    // console.log(this.orders);
+    this.router.navigate(['toPay']);
+  }
+
+  service() {
+    // console.log(this.orders);
+    this.router.navigate(['service']);
+  }
+
+  completed() {
+    // console.log(this.orders);
+    this.router.navigate(['completed']);
   }
 
   public async logout() {
@@ -70,8 +92,9 @@ export class Tab4Page implements OnInit {
       .processData(btoa('getOrders').replace('=', ''), { user_id }, 2)
       .subscribe((dt: any) => {
         let load = this.dataService.decrypt(dt.a);
-        console.log(load);
+        // console.log(load);
         this.orders = load.payload.orders;
+        this.userService.setOrders(this.orders);
         console.log(this.orders);
         this.status = this.orders[0].order_status;
       });

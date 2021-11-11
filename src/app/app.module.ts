@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { NgOtpInputModule } from 'ng-otp-input';
+// import { ModalController } from '@ionic/angular';
 
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,7 +23,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NgOtpInputModule
+    NgOtpInputModule,
+    // ModalController
   ],
   providers: [
     Camera,

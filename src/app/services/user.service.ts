@@ -13,6 +13,7 @@ export class UserService {
   private isLoggedIn: boolean = false;
 
   user_obj: any;
+  orders: any;
 
   constructor() {}
 
@@ -46,6 +47,14 @@ export class UserService {
 
   setUser(user_obj: any) {
     this.user_obj = user_obj;
+  }
+
+  setOrders(orders: any) {
+    this.orders = orders;
+  }
+
+  getOrders() {
+    return this.orders;
   }
 
   getUser() {

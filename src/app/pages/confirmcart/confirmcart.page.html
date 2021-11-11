@@ -1,0 +1,178 @@
+<ion-content>
+  <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <div>
+          <ion-slides pager="false" [options]="slideOpts">
+            <ion-slide id="foo">
+              <ion-card style="width: 330px">
+                <ion-card-header> </ion-card-header>
+
+                <ion-card-content>
+                  <div [innerHtml]="content"></div>
+                </ion-card-content>
+              </ion-card>
+            </ion-slide>
+          </ion-slides>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-content>
+  <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <ion-card class="ion-activatable ripple-parent">
+          <ion-card-header style="margin: auto; text-align: left">
+            <ion-card-title>{{flowername}}</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <!-- <span style="font-size: 20px"
+              >Total Price: ₱ {{total | number:'1.2-2'}}</span
+            > -->
+            <br />
+            <div style="border: solid 1px; margin-top: 10px">
+              <table
+                class="invoice-items"
+                *ngIf="quantity == 6"
+                cellpadding="0"
+                cellspacing="0"
+              >
+                <tbody>
+                  <tr>
+                    <td>Primary</td>
+                    <td>{{primary | titlecase}}</td>
+                    <td class="alignright">
+                      <!-- ₱ {{primary_price | number:'1.2-2'}} -->
+                    </td>
+                    <td class="alignright">
+                      ₱ {{primary_price * 3 | number:'1.2-2'}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Secondary</td>
+                    <td>{{secondary | titlecase}}</td>
+                    <td class="alignright">
+                      ₱ {{secondary_price | number:'1.2-2'}}
+                    </td>
+                    <td class="alignright">
+                      ₱ {{secondary_price * 3 | number:'1.2-2'}}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="alignleft"><b></b></td>
+                    <td class="alignleft" width="25%"><b></b></td>
+                    <td class="alignleft" width="30%"><b>Grand Total: </b></td>
+                    <td class="alignleft">
+                      <b> <span>₱ {{total | number:'1.2-2'}}</span></b>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table
+                class="invoice-items"
+                *ngIf="quantity == 9"
+                cellpadding="0"
+                cellspacing="0"
+              >
+                <tbody>
+                  <tr>
+                    <td>Primary</td>
+                    <td>{{primary | titlecase}}</td>
+                    <td class="alignright">
+                      ₱ {{primary_price | number:'1.2-2'}}
+                    </td>
+                    <td class="alignright">
+                      ₱ {{primary_price * 3 | number:'1.2-2'}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Secondary</td>
+                    <td>{{secondary | titlecase}}</td>
+                    <td class="alignright">
+                      ₱ {{secondary_price | number:'1.2-2'}}
+                    </td>
+                    <td class="alignright">
+                      ₱ {{secondary_price * 6 | number:'1.2-2'}}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="alignleft"><b></b></td>
+                    <td class="alignleft" width="25%"><b></b></td>
+                    <td class="alignleft" width="30%"><b>Grand Total: </b></td>
+                    <td class="alignleft">
+                      <b> <span>₱ {{total | number:'1.2-2'}}</span></b>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table
+                class="invoice-items"
+                *ngIf="quantity == 12"
+                cellpadding="0"
+                cellspacing="0"
+              >
+                <tbody>
+                  <tr>
+                    <td>Primary</td>
+                    <td>{{primary | titlecase}}</td>
+                    <td class="alignright">
+                      ₱ {{primary_price | number:'1.2-2'}}
+                    </td>
+                    <td class="alignright">
+                      ₱ {{primary_price * 4 | number:'1.2-2'}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Secondary</td>
+                    <td>{{secondary | titlecase}}</td>
+                    <td class="alignright">
+                      ₱ {{secondary_price | number:'1.2-2'}}
+                    </td>
+                    <td class="alignright">
+                      ₱ {{secondary_price * 4 | number:'1.2-2'}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Tertiary</td>
+                    <td>{{tertiary | titlecase}}</td>
+                    <td class="alignright">
+                      ₱ {{tertiary_price | number:'1.2-2'}}
+                    </td>
+                    <td class="alignright">
+                      ₱ {{tertiary_price * 4 | number:'1.2-2'}}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="alignleft"><b></b></td>
+                    <td class="alignleft" width="25%"><b></b></td>
+                    <td class="alignleft" width="30%"><b>Grand Total: </b></td>
+                    <td class="alignleft">
+                      <b> <span>₱ {{total | number:'1.2-2'}}</span></b>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </ion-card-content>
+          <ion-ripple-effect></ion-ripple-effect>
+        </ion-card>
+        <ion-grid>
+          <ion-row style="justify-content: center">
+            <ion-button>Checkout</ion-button>
+          </ion-row>
+
+          <!-- <ion-row style="justify-content: center; width: 100%">
+            <ion-button>Back</ion-button>
+          </ion-row> -->
+        </ion-grid>
+      </div>
+    </div>
+  </div>
+</ion-content>
