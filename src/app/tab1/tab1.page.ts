@@ -8,6 +8,7 @@ import {
 import { Doctor } from '../models/doctor';
 // import { PopoverComponent } from '../pages/edit/popover/popover.component';
 import { DataService } from '../services/data/data.service';
+import { UserService } from '../services/user.service';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -35,11 +36,13 @@ export class Tab1Page implements OnInit {
     'November',
     'December',
   ];
+  user_obj: any;
 
   constructor(
     private dataService: DataService,
     private alertController: AlertController,
-    public popoverController: PopoverController
+    public popoverController: PopoverController,
+    private userService: UserService
   ) {
     var myDate = new Date();
     var hrs = myDate.getHours();
@@ -56,6 +59,9 @@ export class Tab1Page implements OnInit {
   ionViewWillEnter() {
     // console.log(window.sessionStorage.getItem('doctor_id'));
     this.ngOnInit();
+    this.user_obj = this.userService.getUser();
+    this.username =
+      this.user_obj.user_firstname + ' ' + this.user_obj.user_lastname;
   }
 
   public async doRefresh(event) {
