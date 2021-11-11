@@ -24,38 +24,154 @@
   <div class="outer">
     <div class="middle">
       <div class="inner">
+        <ion-card class="ion-activatable ripple-parent">
+          <ion-card-header style="margin: auto; text-align: left">
+            <ion-card-title>Generated Bouquet</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <!-- <span style="font-size: 20px"
+              >Total Price: ₱ {{total | number:'1.2-2'}}</span
+            > -->
+            <br />
+            <div style="border: solid 1px; margin-top: 10px">
+              <table
+                class="invoice-items"
+                *ngIf="quantity == 6"
+                cellpadding="0"
+                cellspacing="0"
+              >
+                <tbody>
+                  <tr>
+                    <td>Primary</td>
+                    <td>{{primary | titlecase}}</td>
+                    <td class="alignright">
+                      ₱ {{primary_price | number:'1.2-2'}}
+                    </td>
+                    <td class="alignright">
+                      ₱ {{primary_price * 3 | number:'1.2-2'}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Secondary</td>
+                    <td>{{secondary | titlecase}}</td>
+                    <td class="alignright">
+                      ₱ {{secondary_price | number:'1.2-2'}}
+                    </td>
+                    <td class="alignright">
+                      ₱ {{secondary_price * 3 | number:'1.2-2'}}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="alignleft"><b></b></td>
+                    <td class="alignleft" width="25%"><b></b></td>
+                    <td class="alignleft" width="30%"><b>Grand Total: </b></td>
+                    <td class="alignleft">
+                      <b> <span>₱ {{total | number:'1.2-2'}}</span></b>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table
+                class="invoice-items"
+                *ngIf="quantity == 9"
+                cellpadding="0"
+                cellspacing="0"
+              >
+                <tbody>
+                  <tr>
+                    <td>Primary</td>
+                    <td>{{primary | titlecase}}</td>
+                    <td class="alignright">
+                      ₱ {{primary_price | number:'1.2-2'}}
+                    </td>
+                    <td class="alignright">
+                      ₱ {{primary_price * 3 | number:'1.2-2'}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Secondary</td>
+                    <td>{{secondary | titlecase}}</td>
+                    <td class="alignright">
+                      ₱ {{secondary_price | number:'1.2-2'}}
+                    </td>
+                    <td class="alignright">
+                      ₱ {{secondary_price * 6 | number:'1.2-2'}}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="alignleft"><b></b></td>
+                    <td class="alignleft" width="25%"><b></b></td>
+                    <td class="alignleft" width="30%"><b>Grand Total: </b></td>
+                    <td class="alignleft">
+                      <b> <span>₱ {{total | number:'1.2-2'}}</span></b>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table
+                class="invoice-items"
+                *ngIf="quantity == 12"
+                cellpadding="0"
+                cellspacing="0"
+              >
+                <tbody>
+                  <tr>
+                    <td>Primary</td>
+                    <td>{{primary | titlecase}}</td>
+                    <td class="alignright">
+                      ₱ {{primary_price | number:'1.2-2'}}
+                    </td>
+                    <td class="alignright">
+                      ₱ {{primary_price * 4 | number:'1.2-2'}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Secondary</td>
+                    <td>{{secondary | titlecase}}</td>
+                    <td class="alignright">
+                      ₱ {{secondary_price | number:'1.2-2'}}
+                    </td>
+                    <td class="alignright">
+                      ₱ {{secondary_price * 4 | number:'1.2-2'}}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Tertiary</td>
+                    <td>{{tertiary | titlecase}}</td>
+                    <td class="alignright">
+                      ₱ {{tertiary_price | number:'1.2-2'}}
+                    </td>
+                    <td class="alignright">
+                      ₱ {{tertiary_price * 4 | number:'1.2-2'}}
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="alignleft"><b></b></td>
+                    <td class="alignleft" width="25%"><b></b></td>
+                    <td class="alignleft" width="30%"><b>Grand Total: </b></td>
+                    <td class="alignleft">
+                      <b> <span>₱ {{total | number:'1.2-2'}}</span></b>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </ion-card-content>
+          <ion-ripple-effect></ion-ripple-effect>
+        </ion-card>
         <ion-grid>
-          <ion-row>
-            <ion-card class="ion-activatable ripple-parent">
-              <ion-card-header style="margin: auto; text-align: left">
-                <ion-card-title>Generated Bouquet</ion-card-title>
-              </ion-card-header>
-
-              <ion-card-content>
-                <span style="font-size: 20px">Price:{{total | }}</span> <br />
-                <div style="border: solid 1px; margin-top: 10px">
-                  <b style="font-size: 18px">Descrption:</b>
-                  <p>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been the industry's
-                    standard dummy text ever since the 1500s, when an unknown
-                    printer took a galley of type and scrambled it to make a
-                    type specimen book.
-                  </p>
-                </div>
-              </ion-card-content>
-              <ion-ripple-effect></ion-ripple-effect>
-            </ion-card>
-          </ion-row>
-
           <ion-row style="justify-content: center">
             <ion-button>Checkout</ion-button>
             <ion-button (click)="profile()">Add to Cart</ion-button>
           </ion-row>
 
-          <ion-row style="justify-content: center; width: 100%">
+          <!-- <ion-row style="justify-content: center; width: 100%">
             <ion-button>Back</ion-button>
-          </ion-row>
+          </ion-row> -->
         </ion-grid>
       </div>
     </div>
