@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { DataService } from 'src/app/services/data/data.service';
 import { FlowersService } from 'src/app/services/flower.service';
 
@@ -188,11 +188,5 @@ export class GeneratePage implements OnInit {
       console.log(this.primary);
       console.log(this.permutations[this.cpt]);
     }
-    // let fp = this.Flowers[0];
-    if (this.primary)
-    console.log(this.Flowers[0]['flower_price']);
-    // }
-    // this.router.navigate(['confirmation']);
-  
   }
 }
