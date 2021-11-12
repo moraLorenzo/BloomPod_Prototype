@@ -191,9 +191,9 @@
       </ion-list-header>
     </ion-item>
 
-    <div *ngFor="let order of orders">
+    <div *ngFor="let order of orders; index as i">
       <ion-list *ngIf="order.order_status == 'bookmark'">
-        <ion-item  (click)="confirmcart(order)" class="ion-activatable ripple-parent">
+        <ion-item  (click)="confirmcart(i, order)" class="ion-activatable ripple-parent">
           
           <ion-avatar slot="start">
             <img src=".\assets\icon\Bloom.png">
@@ -201,6 +201,7 @@
           <ion-label>
             <h2>{{order.order_flower}}</h2>
             <h3>{{order.order_totalprice}}</h3>
+            <p>{{order.main_flower}} {{order.secondary_flower}} {{order.tertiary_flower}}</p>
           </ion-label>
 
           <ion-ripple-effect></ion-ripple-effect>

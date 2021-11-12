@@ -26,27 +26,45 @@ export class Tab4Page implements OnInit {
     private alertController: AlertController
   ) {
     // this.userService.getFullname();
+    // console.log("here");
+
   }
 
   ngOnInit() {
     // this.getOrders(this.userId);
-  }
-
-  ionViewWillEnter() {
     this.user_obj = this.userService.getUser();
     this.username =
       this.user_obj.user_firstname + ' ' + this.user_obj.user_lastname;
     this.address = this.user_obj.user_address;
     this.userId = this.user_obj.user_id;
+  }
+
+  ionViewWillEnter() {
+    // this.user_obj = this.userService.getUser();
+    // this.username =
+    //   this.user_obj.user_firstname + ' ' + this.user_obj.user_lastname;
+    // this.address = this.user_obj.user_address;
+    // this.userId = this.user_obj.user_id;
+    // console.log("here");
+    // console.log("here");
+
     this.getOrders(this.userId);
   }
 
-  confirmcart(order) {
+  ionViewDidEnter(){
+    console.log("here");
+    this.getOrders(this.userId);
+
+  }
+
+
+
+  confirmcart(i, order) {
     // console.log(order);
     this.router.navigate(['confirmcart'], {
       state: {
         data: {
-          order
+          i, order
         },
       },
     });
@@ -54,17 +72,38 @@ export class Tab4Page implements OnInit {
   
   toPay() {
     // console.log(this.orders);
-    this.router.navigate(['toPay']);
+    let order = this.orders;
+    this.router.navigate(['toPay'], {
+      state: {
+        data: {
+          order
+        },
+      },
+    });
   }
 
   service() {
     // console.log(this.orders);
-    this.router.navigate(['service']);
+    let order = this.orders;
+    this.router.navigate(['service'], {
+      state: {
+        data: {
+          order
+        },
+      },
+    });
   }
 
   completed() {
     // console.log(this.orders);
-    this.router.navigate(['completed']);
+    let order = this.orders;
+    this.router.navigate(['completed'], {
+      state: {
+        data: {
+          order
+        },
+      },
+    });
   }
 
   public async logout() {
@@ -93,16 +132,17 @@ export class Tab4Page implements OnInit {
   }
 
   getOrders(id) {
+    this.orders = [];
     let user_id = id;
-    // console.log(user_id);
+    console.log(user_id);
     this.dataService
       .processData(btoa('getOrders').replace('=', ''), { user_id }, 2)
       .subscribe((dt: any) => {
         let load = this.dataService.decrypt(dt.a);
         // console.log(load);
         this.orders = load.payload.orders.reverse();
-        // console.log(this.orders);
-        this.status = this.orders[0].order_status;
+        console.log(load);
+        // this.status = this.orders[0].order_status;
       });
   }
 

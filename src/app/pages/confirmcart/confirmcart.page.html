@@ -43,23 +43,20 @@
               >
                 <tbody>
                   <tr>
-                    <td>Primary</td>
+                    <td>Primary: </td>
                     <td>{{primary | titlecase}}</td>
                     <td class="alignright">
                       <!-- ₱ {{primary_price | number:'1.2-2'}} -->
                     </td>
                     <td class="alignright">
-                      ₱ {{primary_price * 3 | number:'1.2-2'}}
                     </td>
                   </tr>
                   <tr>
-                    <td>Secondary</td>
+                    <td>Secondary: </td>
                     <td>{{secondary | titlecase}}</td>
                     <td class="alignright">
-                      ₱ {{secondary_price | number:'1.2-2'}}
                     </td>
                     <td class="alignright">
-                      ₱ {{secondary_price * 3 | number:'1.2-2'}}
                     </td>
                   </tr>
 
@@ -81,23 +78,19 @@
               >
                 <tbody>
                   <tr>
-                    <td>Primary</td>
+                    <td>Primary: </td>
                     <td>{{primary | titlecase}}</td>
                     <td class="alignright">
-                      ₱ {{primary_price | number:'1.2-2'}}
                     </td>
                     <td class="alignright">
-                      ₱ {{primary_price * 3 | number:'1.2-2'}}
                     </td>
                   </tr>
                   <tr>
-                    <td>Secondary</td>
+                    <td>Secondary: </td>
                     <td>{{secondary | titlecase}}</td>
                     <td class="alignright">
-                      ₱ {{secondary_price | number:'1.2-2'}}
                     </td>
                     <td class="alignright">
-                      ₱ {{secondary_price * 6 | number:'1.2-2'}}
                     </td>
                   </tr>
 
@@ -119,33 +112,27 @@
               >
                 <tbody>
                   <tr>
-                    <td>Primary</td>
+                    <td>Primary: </td>
                     <td>{{primary | titlecase}}</td>
                     <td class="alignright">
-                      ₱ {{primary_price | number:'1.2-2'}}
                     </td>
                     <td class="alignright">
-                      ₱ {{primary_price * 4 | number:'1.2-2'}}
                     </td>
                   </tr>
                   <tr>
-                    <td>Secondary</td>
+                    <td>Secondary: </td>
                     <td>{{secondary | titlecase}}</td>
                     <td class="alignright">
-                      ₱ {{secondary_price | number:'1.2-2'}}
                     </td>
                     <td class="alignright">
-                      ₱ {{secondary_price * 4 | number:'1.2-2'}}
                     </td>
                   </tr>
                   <tr>
-                    <td>Tertiary</td>
+                    <td>Tertiary: </td>
                     <td>{{tertiary | titlecase}}</td>
                     <td class="alignright">
-                      ₱ {{tertiary_price | number:'1.2-2'}}
                     </td>
                     <td class="alignright">
-                      ₱ {{tertiary_price * 4 | number:'1.2-2'}}
                     </td>
                   </tr>
 
@@ -165,7 +152,8 @@
         </ion-card>
         <ion-grid>
           <ion-row style="justify-content: center">
-            <ion-button>Checkout</ion-button>
+            <ion-button (click)="mode()" >Checkout</ion-button>
+            <ion-button (click)="cancel()" >Cancel</ion-button>
           </ion-row>
 
           <!-- <ion-row style="justify-content: center; width: 100%">

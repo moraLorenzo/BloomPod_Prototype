@@ -12,12 +12,12 @@ export class ToPayPage implements OnInit {
   constructor(private userService: UserService, public router: Router) {  }
 
   ngOnInit() {
-    this.orders = this.userService.getOrders();
   }
 
-  getorder() {
-    console.log(this.orders);
+  ionViewWillEnter() {
+    this.orders = history.state.data.order;
   }
+    
 
   navHistory(order) {
     console.log(order);
