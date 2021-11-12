@@ -7,7 +7,7 @@
 
 <ion-content>
 
-  <div *ngFor="let order of orders">
+  <div *ngFor="let order of orders; index as i">
     <ion-list *ngIf="order.order_status == 'toPay'">
       <ion-item  class="ion-activatable ripple-parent">
         <ion-avatar slot="start">
@@ -17,8 +17,10 @@
           <h2>{{order.order_flower}}</h2>
           <h3>{{order.order_totalprice}}</h3>
         </ion-label>
+      <div slot="end"> 
         <ion-button>Payment</ion-button>
-        <ion-button>Cancel</ion-button>
+        <ion-button (click)="cancel(i,order)">Cancel Order</ion-button>
+      </div>
       </ion-item>
     </ion-list>
   </div>

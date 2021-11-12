@@ -61,6 +61,7 @@ export class Tab4Page implements OnInit {
 
   confirmcart(i, order) {
     // console.log(order);
+    let order_obj = this.orders;
     this.router.navigate(['confirmcart'], {
       state: {
         data: {
