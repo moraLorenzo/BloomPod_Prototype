@@ -7,5 +7,15 @@ import { Platform } from '@ionic/angular';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(public platform: Platform) {}
+  constructor(private platform: Platform) {
+    this.platform.backButton.subscribeWithPriority(5, () => {
+      console.log('Another handler was called!');
+    });
+
+    this.platform.backButton.subscribeWithPriority(10, (processNextHandler) => {
+      console.log('Handler was called!');
+
+      processNextHandler();
+    });
+  }
 }
