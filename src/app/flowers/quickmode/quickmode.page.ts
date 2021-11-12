@@ -1,36 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
 import { DataService } from 'src/app/services/data/data.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-mode',
-  templateUrl: './mode.page.html',
-  styleUrls: ['./mode.page.scss'],
+  selector: 'app-quickmode',
+  templateUrl: './quickmode.page.html',
+  styleUrls: ['./quickmode.page.scss'],
 })
-export class ModePage implements OnInit {
-  order_obj: any;
+export class QuickmodePage implements OnInit {
   mode: string = 'Delivery';
   time: string = '';
   userId: any;
   user_obj: any;
 
+  bouquet_obj: any;
+
   constructor(
     public router: Router,
     private dataService: DataService,
-    private userService: UserService,
-    public toastController: ToastController,
+    private userService: UserService
   ) {}
 
   ngOnInit() {}
 
   ionViewWillEnter() {
+    console.log(history.state.data);
+    this.bouquet_obj = history.state.data;
+
     this.user_obj = this.userService.getUser();
     this.userId = this.user_obj.user_id;
-    this.order_obj = history.state.data;
-    console.log(history.state.data);
-    // console.log(history.state.data.order);
   }
 
   onChange(deviceValue: any) {
@@ -55,7 +54,6 @@ export class ModePage implements OnInit {
       time[5] = +time[0] < 12 ? 'AM' : 'PM'; // Set AM/PM
       time[0] = +time[0] % 12 || 12; // Adjust hours
     }
-    console.log(time.join(''));
     return time.join(''); // return adjusted time or original string
   }
 
@@ -72,12 +70,12 @@ export class ModePage implements OnInit {
 
     if (date < e.target[3].value) {
       let user_id = this.userId;
-      let order_flower = 'Generated Flower Bouquet';
-      let main_flower = this.order_obj.primary;
-      let secondary_flower = this.order_obj.secondary;
-      let tertiary_flower = this.order_obj.tertiary;
-      let quantity = this.order_obj.quantity;
-      let order_totalprice = this.order_obj.total;
+      let order_flower = this.bouquet_obj.quick_name;
+      let main_flower = null;
+      let secondary_flower = null;
+      let tertiary_flower = null;
+      let quantity = null;
+      let order_totalprice = this.bouquet_obj.quick_price;
       let order_payment = this.mode;
       let address = e.target[0].value;
       let order_time = e.target[4].value + 'PM';
@@ -118,8 +116,6 @@ export class ModePage implements OnInit {
             // console.log(dt.a);
             let load = this.dataService.decrypt(dt.a);
             console.log(load.status);
-            this.presentToast(load.status.message);
-            this.router.navigate(['tabs/tab1']);
           },
           (er) => {
             console.log('Invalid Inputs');
@@ -132,12 +128,12 @@ export class ModePage implements OnInit {
         console.log(desiredTime);
         console.log(time);
         let user_id = this.userId;
-        let order_flower = 'Generated Flower Bouquet';
-        let main_flower = this.order_obj.primary;
-        let secondary_flower = this.order_obj.secondary;
-        let tertiary_flower = this.order_obj.tertiary;
-        let quantity = this.order_obj.quantity;
-        let order_totalprice = this.order_obj.total;
+        let order_flower = this.bouquet_obj.quick_name;
+        let main_flower = null;
+        let secondary_flower = null;
+        let tertiary_flower = null;
+        let quantity = null;
+        let order_totalprice = this.bouquet_obj.quick_price;
         let order_payment = this.mode;
         let address = e.target[0].value;
         let order_time = e.target[4].value + 'PM';
@@ -175,8 +171,6 @@ export class ModePage implements OnInit {
               // console.log(dt.a);
               let load = this.dataService.decrypt(dt.a);
               console.log(load.status);
-              this.presentToast(load.status.message);
-              this.router.navigate(['tabs/tab1']);
             },
             (er) => {
               console.log('Invalid Inputs');
@@ -203,12 +197,12 @@ export class ModePage implements OnInit {
 
     if (date < e.target[0].value) {
       let user_id = this.userId;
-      let order_flower = 'Generated Flower Bouquet';
-      let main_flower = this.order_obj.primary;
-      let secondary_flower = this.order_obj.secondary;
-      let tertiary_flower = this.order_obj.tertiary;
-      let quantity = this.order_obj.quantity;
-      let order_totalprice = this.order_obj.total;
+      let order_flower = this.bouquet_obj.quick_name;
+      let main_flower = null;
+      let secondary_flower = null;
+      let tertiary_flower = null;
+      let quantity = null;
+      let order_totalprice = this.bouquet_obj.quick_price;
       let order_payment = this.mode;
       let address = null;
       let order_time = e.target[1].value + 'PM';
@@ -246,8 +240,6 @@ export class ModePage implements OnInit {
             // console.log(dt.a);
             let load = this.dataService.decrypt(dt.a);
             console.log(load.status);
-            this.presentToast(load.status.message);
-            this.router.navigate(['tabs/tab1']);
           },
           (er) => {
             console.log('Invalid Inputs');
@@ -259,12 +251,12 @@ export class ModePage implements OnInit {
       if (time < desiredTime) {
         console.log(desiredTime);
         let user_id = this.userId;
-        let order_flower = 'Generated Flower Bouquet';
-        let main_flower = this.order_obj.primary;
-        let secondary_flower = this.order_obj.secondary;
-        let tertiary_flower = this.order_obj.tertiary;
-        let quantity = this.order_obj.quantity;
-        let order_totalprice = this.order_obj.total;
+        let order_flower = this.bouquet_obj.quick_name;
+        let main_flower = null;
+        let secondary_flower = null;
+        let tertiary_flower = null;
+        let quantity = null;
+        let order_totalprice = this.bouquet_obj.quick_price;
         let order_payment = this.mode;
         let address = null;
         let order_time = e.target[1].value + 'PM';
@@ -302,9 +294,7 @@ export class ModePage implements OnInit {
             (dt: any) => {
               // console.log(dt.a);
               let load = this.dataService.decrypt(dt.a);
-              console.log(load.status.message);
-              this.presentToast(load.status.message);
-              this.router.navigate(['tabs/tab1']);
+              console.log(load.status);
             },
             (er) => {
               console.log('Invalid Inputs');
@@ -316,13 +306,5 @@ export class ModePage implements OnInit {
     } else {
       console.log('invalid date');
     }
-  }
-
-  async presentToast(msg) {
-    const toast = await this.toastController.create({
-      message: msg,
-      duration: 2000,
-    });
-    toast.present();
   }
 }

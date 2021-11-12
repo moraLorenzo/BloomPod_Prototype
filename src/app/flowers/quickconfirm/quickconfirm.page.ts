@@ -17,6 +17,7 @@ export class QuickconfirmPage implements OnInit {
   userId: any;
   bouquet_name: any;
 
+  bouquet_obj: any;
   constructor(
     private userService: UserService,
     private dataService: DataService,
@@ -27,6 +28,8 @@ export class QuickconfirmPage implements OnInit {
 
   ionViewWillEnter() {
     console.log(history.state.data);
+
+    this.bouquet_obj = history.state.data;
 
     this.link = this.link + history.state.data.quick_name + '.png';
     this.bouquet_name = history.state.data.quick_name;
@@ -65,5 +68,13 @@ export class QuickconfirmPage implements OnInit {
           console.log('Invalid Inputs');
         }
       );
+  }
+
+  mode() {
+    this.router.navigate(['quickmode'], {
+      state: {
+        data: this.bouquet_obj,
+      },
+    });
   }
 }
