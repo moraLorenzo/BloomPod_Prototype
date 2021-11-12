@@ -45,19 +45,19 @@
     </div>
 
     <div class="form-group mx-auto mt-3" style="width: 93%">
-      <label for="selectInput">Mode of Transaction</label>
+      <label for="selectInput">Time of Delivery</label>
       <select
         id="selectInput"
         class="form-select mt-2"
         aria-label="Determine Flower Quantity"
         (change)="timeChange($event.target.value)"
       >
-        <option selected value="1pm">1pm</option>
-        <option value="2pm">2pm</option>
-        <option value="3pm">3pm</option>
-        <option value="4pm">4pm</option>
-        <option value="5pm">5pm</option>
-        <option value="6pm">6pm</option>
+        <option selected value="1:00">1pm</option>
+        <option value="2:00">2pm</option>
+        <option value="3:00">3pm</option>
+        <option value="4:00">4pm</option>
+        <option value="5:00">5pm</option>
+        <option value="6:00">6pm</option>
       </select>
     </div>
 
@@ -70,12 +70,32 @@
     <br />
   </form>
 
-  <form ngNativeValidate *ngIf="mode == 'Pick Up'" (submit)="onSubmit($event)">
+  <form
+    ngNativeValidate
+    *ngIf="mode == 'Pick Up'"
+    (submit)="pickSubmit($event)"
+  >
     <div class="form-group mx-auto mt-3" style="width: 93%">
-      <label>Date and Time</label>
-      <input type="text" class="form-control" required />
+      <label>Date</label>
+      <input type="date" class="form-control" required />
     </div>
 
+    <div class="form-group mx-auto mt-3" style="width: 93%">
+      <label for="selectInput">Time for Pickup</label>
+      <select
+        id="selectInput"
+        class="form-select mt-2"
+        aria-label="Determine Flower Quantity"
+        (change)="timeChange($event.target.value)"
+      >
+        <option selected value="1:00">1pm</option>
+        <option value="2:00">2pm</option>
+        <option value="3:00">3pm</option>
+        <option value="4:00">4pm</option>
+        <option value="5:00">5pm</option>
+        <option value="6:00">6pm</option>
+      </select>
+    </div>
     <div class="form-group mx-auto mt-3" style="width: 93%">
       <label>Contact Number</label>
       <input type="text" class="form-control" required />

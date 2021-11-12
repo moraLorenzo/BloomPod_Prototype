@@ -31,7 +31,7 @@
 
       <ion-row>
         <ion-col size="6" *ngFor="let flower of Flowers;let i = index;">
-          <ion-card (click)="goToComponentB(flower.name)">
+          <ion-card (click)="confirm(flower)">
             <div class="card-title text-center mt-2">
               {{ flower.quick_name | titlecase }}
             </div>

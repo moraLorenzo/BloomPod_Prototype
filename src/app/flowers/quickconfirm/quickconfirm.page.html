@@ -1,0 +1,35 @@
+<ion-content>
+  <div class="outer">
+    <div class="middle">
+      <div class="inner">
+        <div>
+          <ion-slides pager="false" [options]="slideOpts">
+            <ion-slide id="foo">
+              <ion-card style="width: 330px">
+                <ion-card-header><img [src]="link" alt="" /> </ion-card-header>
+
+                <ion-card-content> </ion-card-content>
+              </ion-card>
+            </ion-slide>
+          </ion-slides>
+        </div>
+        <ion-grid>
+          <ion-row style="justify-content: center">
+            <span style="font-size: 20px"
+              >Total Price: ₱ {{total | number:'1.2-2'}}</span
+            >
+          </ion-row>
+
+          <ion-row style="justify-content: center">
+            <ion-button (click)="mode()">Checkout</ion-button>
+            <ion-button (click)="add_to_cart()">Add to Cart</ion-button>
+          </ion-row>
+
+          <!-- <ion-row style="justify-content: center; width: 100%">
+            <ion-button>Back</ion-button>
+          </ion-row> -->
+        </ion-grid>
+      </div>
+    </div>
+  </div>
+</ion-content>

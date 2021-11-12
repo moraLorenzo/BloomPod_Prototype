@@ -39,4 +39,13 @@ export class QuickPage implements OnInit {
         }
       );
   }
+
+  confirm(obj: any) {
+    console.log(obj);
+    this.router.navigate(['quickconfirm'], {
+      state: {
+        data: obj,
+      },
+    });
+  }
 }
