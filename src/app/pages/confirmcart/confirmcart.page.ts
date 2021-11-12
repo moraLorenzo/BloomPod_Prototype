@@ -63,10 +63,15 @@ export class ConfirmcartPage implements OnInit {
 
   mode() {
     let order = this.orders;
+    // let primary = order.main_flower
     this.router.navigate(['mode'], {
       state: {
         data: {
-          order
+          quantity: order.quantity,
+          primary: order.main_flower,
+          secondary: order.secondary_flower,
+          tertiary: order.tertiary_flower,
+          total: order.order_totalprice
         },
       },
     });

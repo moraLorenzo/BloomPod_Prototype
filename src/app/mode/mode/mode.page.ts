@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { DataService } from 'src/app/services/data/data.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -18,7 +19,8 @@ export class ModePage implements OnInit {
   constructor(
     public router: Router,
     private dataService: DataService,
-    private userService: UserService
+    private userService: UserService,
+    public toastController: ToastController,
   ) {}
 
   ngOnInit() {}
@@ -26,8 +28,9 @@ export class ModePage implements OnInit {
   ionViewWillEnter() {
     this.user_obj = this.userService.getUser();
     this.userId = this.user_obj.user_id;
-    console.log(history.state.data);
     this.order_obj = history.state.data;
+    console.log(history.state.data);
+    // console.log(history.state.data.order);
   }
 
   onChange(deviceValue: any) {
@@ -114,6 +117,8 @@ export class ModePage implements OnInit {
             // console.log(dt.a);
             let load = this.dataService.decrypt(dt.a);
             console.log(load.status);
+            this.presentToast(load.status.message);
+            this.router.navigate(['tabs/tab1']);
           },
           (er) => {
             console.log('Invalid Inputs');
@@ -169,6 +174,8 @@ export class ModePage implements OnInit {
               // console.log(dt.a);
               let load = this.dataService.decrypt(dt.a);
               console.log(load.status);
+              this.presentToast(load.status.message);
+              this.router.navigate(['tabs/tab1']);
             },
             (er) => {
               console.log('Invalid Inputs');
@@ -238,6 +245,8 @@ export class ModePage implements OnInit {
             // console.log(dt.a);
             let load = this.dataService.decrypt(dt.a);
             console.log(load.status);
+            this.presentToast(load.status.message);
+            this.router.navigate(['tabs/tab1']);
           },
           (er) => {
             console.log('Invalid Inputs');
@@ -292,7 +301,9 @@ export class ModePage implements OnInit {
             (dt: any) => {
               // console.log(dt.a);
               let load = this.dataService.decrypt(dt.a);
-              console.log(load.status);
+              console.log(load.status.message);
+              this.presentToast(load.status.message);
+              this.router.navigate(['tabs/tab1']);
             },
             (er) => {
               console.log('Invalid Inputs');
@@ -304,5 +315,13 @@ export class ModePage implements OnInit {
     } else {
       console.log('invalid date');
     }
+  }
+
+  async presentToast(msg) {
+    const toast = await this.toastController.create({
+      message: msg,
+      duration: 2000,
+    });
+    toast.present();
   }
 }
