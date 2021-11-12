@@ -90,6 +90,10 @@ const routes: Routes = [
     path: 'quickconfirm',
     loadChildren: () => import('./flowers/quickconfirm/quickconfirm.module').then( m => m.QuickconfirmPageModule)
   },
+  {
+    path: 'quickmode',
+    loadChildren: () => import('./flowers/quickmode/quickmode.module').then( m => m.QuickmodePageModule)
+  },
 
 ];
 @NgModule({
