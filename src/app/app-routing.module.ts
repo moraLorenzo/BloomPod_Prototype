@@ -86,7 +86,11 @@ const routes: Routes = [
   {
     path: 'confirmcart',
     loadChildren: () => import('./pages/confirmcart/confirmcart.module').then( m => m.ConfirmcartPageModule)
+  },  {
+    path: 'quickconfirm',
+    loadChildren: () => import('./flowers/quickconfirm/quickconfirm.module').then( m => m.QuickconfirmPageModule)
   },
+
 ];
 @NgModule({
   imports: [
