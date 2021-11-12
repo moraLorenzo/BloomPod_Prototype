@@ -17,6 +17,8 @@ export class ConfirmcartPage implements OnInit {
   total: any;
   quantity: any;
   order_id: any;
+  orders: any;
+  index: any;
 
   content:any;
   bouq
@@ -27,14 +29,15 @@ export class ConfirmcartPage implements OnInit {
     console.log(history.state.data);
   }
   ionViewWillEnter() {
-    let orders = history.state.data.order;
-    this.flowername = orders.order_flower;
-    this.primary = orders.main_flower;
-    this.secondary = orders.secondary_flower;
-    this.tertiary = orders.tertiary_flower;
-    this.total = orders.order_totalprice;
-    this.quantity = orders.quantity;
-    this.order_id = orders.order_id;
+    this.index = history.state.data.i;
+    this.orders = history.state.data.order;
+    this.flowername = this.orders.order_flower;
+    this.primary = this.orders.main_flower;
+    this.secondary = this.orders.secondary_flower;
+    this.tertiary = this.orders.tertiary_flower;
+    this.total = this.orders.order_totalprice;
+    this.quantity = this.orders.quantity;
+    this.order_id = this.orders.order_id;
 
 
     if ( this.quantity == 6) {
@@ -59,20 +62,31 @@ export class ConfirmcartPage implements OnInit {
   }
 
   mode() {
-    this.router.navigate(['mode']);
+    let order = this.orders;
+    this.router.navigate(['mode'], {
+      state: {
+        data: {
+          order
+        },
+      },
+    });
   }
 
   cancel() {
     let order_id = this.order_id;
-    console.log(order_id);
+    let i = history.state.data.i;
     this.dataService
       .processData(btoa('cancel').replace('=', ''), { order_id }, 2)
       .subscribe((dt: any) => {
         let load = this.dataService.decrypt(dt.a);
         console.log(load.status.message);
         this.presentToast(load.status.message);
-        this.router.navigate(['tabs/tab1']);
+      this.router.navigate(['tabs/tab1']);
       });
+  }
+
+  back(){
+    this.router.navigate(['tabs/tab4']);
   }
 
   async presentToast(msg) {
