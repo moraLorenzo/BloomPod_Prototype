@@ -52,6 +52,7 @@ export class ModePage implements OnInit {
       time[5] = +time[0] < 12 ? 'AM' : 'PM'; // Set AM/PM
       time[0] = +time[0] % 12 || 12; // Adjust hours
     }
+    console.log(time.join(''));
     return time.join(''); // return adjusted time or original string
   }
 
