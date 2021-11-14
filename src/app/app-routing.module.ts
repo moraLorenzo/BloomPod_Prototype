@@ -73,28 +73,42 @@ const routes: Routes = [
   },
   {
     path: 'toPay',
-    loadChildren: () => import('./pages/to-pay/to-pay.module').then( m => m.ToPayPageModule)
+    loadChildren: () =>
+      import('./pages/to-pay/to-pay.module').then((m) => m.ToPayPageModule),
   },
   {
     path: 'completed',
-    loadChildren: () => import('./pages/completed/completed.module').then( m => m.CompletedPageModule)
+    loadChildren: () =>
+      import('./pages/completed/completed.module').then(
+        (m) => m.CompletedPageModule
+      ),
   },
   {
     path: 'service',
-    loadChildren: () => import('./pages/service/service.module').then( m => m.ServicePageModule)
+    loadChildren: () =>
+      import('./pages/service/service.module').then((m) => m.ServicePageModule),
   },
   {
     path: 'confirmcart',
-    loadChildren: () => import('./pages/confirmcart/confirmcart.module').then( m => m.ConfirmcartPageModule)
-  },  {
+    loadChildren: () =>
+      import('./pages/confirmcart/confirmcart.module').then(
+        (m) => m.ConfirmcartPageModule
+      ),
+  },
+  {
     path: 'quickconfirm',
-    loadChildren: () => import('./flowers/quickconfirm/quickconfirm.module').then( m => m.QuickconfirmPageModule)
+    loadChildren: () =>
+      import('./flowers/quickconfirm/quickconfirm.module').then(
+        (m) => m.QuickconfirmPageModule
+      ),
   },
   {
     path: 'quickmode',
-    loadChildren: () => import('./flowers/quickmode/quickmode.module').then( m => m.QuickmodePageModule)
+    loadChildren: () =>
+      import('./flowers/quickmode/quickmode.module').then(
+        (m) => m.QuickmodePageModule
+      ),
   },
-
 ];
 @NgModule({
   imports: [

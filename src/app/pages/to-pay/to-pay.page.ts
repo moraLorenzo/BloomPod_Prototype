@@ -6,7 +6,7 @@ import { DataService } from 'src/app/services/data/data.service';
 import { UserService } from 'src/app/services/user.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Order } from '../../models/order';
-import { PhotoLibrary } from '@ionic-native/photo-library/ngx';
+
 @Component({
   selector: 'app-to-pay',
   templateUrl: './to-pay.page.html',
@@ -17,24 +17,28 @@ export class ToPayPage implements OnInit {
   imgURL = '../../assets/icon/addImage.png';
 
   orderPayload: Order;
-
+  user_obj: any;
+  userId: any;
   res: any;
   constructor(
     private userService: UserService,
     public router: Router,
     public dataService: DataService,
     public toastController: ToastController,
-    private camera: Camera,
-    private photoLibrary: PhotoLibrary
+    private camera: Camera
   ) {
     this.orderPayload = new Order();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.user_obj = this.userService.getUser();
+    this.userId = this.user_obj.user_id;
+  }
 
   ionViewWillEnter() {
-    this.orders = history.state.data.order;
-    console.log(this.orders);
+    // this.orders = history.state.data.order;
+    // console.log(this.orders);
+    this.gettoPay(this.userId);
   }
 
   back() {
@@ -62,7 +66,8 @@ export class ToPayPage implements OnInit {
     toast.present();
   }
 
-  getGallery() {
+  getGallery(id: any) {
+    this.orderPayload.order_id = id;
     this.camera
       .getPicture({
         quality: 100,
@@ -85,7 +90,6 @@ export class ToPayPage implements OnInit {
 
   async update() {
     console.log(this.orderPayload);
-    this.orderPayload.order_id = 78;
     this.orderPayload.payment = this.imgURL;
 
     this.res = await this.dataService.updateImage(this.orderPayload);
@@ -104,5 +108,20 @@ export class ToPayPage implements OnInit {
       console.log('RESULT', reader.result);
     };
     reader.readAsDataURL(file);
+  }
+  gettoPay(id) {
+    this.orders = [];
+    let user_id = id;
+    console.log(user_id);
+    this.dataService
+      .processData(btoa('gettoPay').replace('=', ''), { user_id }, 2)
+      .subscribe((dt: any) => {
+        let load = this.dataService.decrypt(dt.a);
+        // console.log(load);
+
+        this.orders = load.payload.orders.reverse();
+        // console.log(load);
+        // this.status = this.orders[0].order_status;
+      });
   }
 }
