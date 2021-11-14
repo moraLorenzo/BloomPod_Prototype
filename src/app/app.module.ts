@@ -12,6 +12,7 @@ import { NgOtpInputModule } from 'ng-otp-input';
 // import { ModalController } from '@ionic/angular';
 
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({

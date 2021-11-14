@@ -115,6 +115,7 @@ export class ModePage implements OnInit {
             // console.log(dt.a);
             let load = this.dataService.decrypt(dt.a);
             console.log(load.status);
+            this.router.navigate(['tabs/tab4']);
           },
           (er) => {
             console.log('Invalid Inputs');
@@ -170,6 +171,7 @@ export class ModePage implements OnInit {
               // console.log(dt.a);
               let load = this.dataService.decrypt(dt.a);
               console.log(load.status);
+              this.router.navigate(['tabs/tab4']);
             },
             (er) => {
               console.log('Invalid Inputs');
@@ -239,6 +241,7 @@ export class ModePage implements OnInit {
             // console.log(dt.a);
             let load = this.dataService.decrypt(dt.a);
             console.log(load.status);
+            this.router.navigate(['tabs/tab4']);
           },
           (er) => {
             console.log('Invalid Inputs');
@@ -294,6 +297,7 @@ export class ModePage implements OnInit {
               // console.log(dt.a);
               let load = this.dataService.decrypt(dt.a);
               console.log(load.status);
+              this.router.navigate(['tabs/tab4']);
             },
             (er) => {
               console.log('Invalid Inputs');

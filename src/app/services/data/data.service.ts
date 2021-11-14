@@ -12,14 +12,10 @@ import padZeroPadding from 'crypto-js/pad-zeropadding';
   providedIn: 'root',
 })
 export class DataService {
-
   version_number = '1.1.0';
 
-    private keyString = new DefaultImage();
-  constructor(
-    private http: HttpClient,
-    private userService: UserService
-  ) { }
+  private keyString = new DefaultImage();
+  constructor(private http: HttpClient, private userService: UserService) {}
 
   request(endpoint, data) {
     try {
@@ -34,21 +30,36 @@ export class DataService {
   processData(api: string, load: any, sw: number) {
     // console.log(load);
 
-    let payload  = { load: load, token: this.userService.getToken(), userid: this.userService.getUserID() }
-    switch(sw) {
-      case 1: 
-        return this.http.post(this.userService.apiLink+api, this.convertmessage(unescape(encodeURIComponent(JSON.stringify(payload)))));
-      break;
+    let payload = {
+      load: load,
+      token: this.userService.getToken(),
+      userid: this.userService.getUserID(),
+    };
+    switch (sw) {
+      case 1:
+        return this.http.post(
+          this.userService.apiLink + api,
+          this.convertmessage(
+            unescape(encodeURIComponent(JSON.stringify(payload)))
+          )
+        );
+        break;
       case 2:
-        return this.http.post(this.userService.apiLink+api, this.convertmessage(unescape(encodeURIComponent(JSON.stringify(load)))));
-      break;
+        return this.http.post(
+          this.userService.apiLink + api,
+          this.convertmessage(
+            unescape(encodeURIComponent(JSON.stringify(load)))
+          )
+        );
+        break;
       case 3:
-        return this.http.post(this.userService.apiLink+api, load);
-      break;
+        return this.http.post(this.userService.apiLink + api, load);
+        break;
       case 4:
-        return this.http.get(this.userService.apiLink+api, load);
-      break;
-      default: break;
+        return this.http.get(this.userService.apiLink + api, load);
+        break;
+      default:
+        break;
     }
   }
 
@@ -86,12 +97,31 @@ export class DataService {
     let keyString = this.userService.genHexString(32);
     let ivString = this.userService.genHexString(32);
     let key = encHex.parse(keyString);
-    let iv =  encHex.parse(ivString);
-    
-    return this.keyString.generateSalt()+iv+key+aes.encrypt(msg, key, {iv:iv, padding:padZeroPadding}).toString();
+    let iv = encHex.parse(ivString);
+
+    return (
+      this.keyString.generateSalt() +
+      iv +
+      key +
+      aes.encrypt(msg, key, { iv: iv, padding: padZeroPadding }).toString()
+    );
   }
 
   ger_ver() {
     return this.version_number;
+  }
+
+  public async updateImage(update: any) {
+    const formData = new FormData();
+    formData.append('order_id', update.order_id);
+
+    const URL = 'http://192.168.100.128/bloompod_api/dXBkYXRlX29yZGVy';
+
+    if (update.payment) {
+      const posterFile = await fetch(update.payment);
+      const blob = await posterFile.blob();
+      formData.append('payment', blob);
+    }
+    return await this.http.post(URL, formData).toPromise();
   }
 }
