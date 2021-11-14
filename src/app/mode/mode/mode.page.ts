@@ -20,7 +20,7 @@ export class ModePage implements OnInit {
     public router: Router,
     private dataService: DataService,
     private userService: UserService,
-    public toastController: ToastController,
+    public toastController: ToastController
   ) {}
 
   ngOnInit() {}
@@ -124,6 +124,7 @@ export class ModePage implements OnInit {
             // console.log(dt.a);
             let load = this.dataService.decrypt(dt.a);
             console.log(load.status);
+
             this.presentToast(load.status.message);
             this.router.navigate(['tabs/tab1']);
           },
@@ -186,6 +187,7 @@ export class ModePage implements OnInit {
               // console.log(dt.a);
               let load = this.dataService.decrypt(dt.a);
               console.log(load.status);
+
               this.presentToast(load.status.message);
               this.router.navigate(['tabs/tab1']);
             },
@@ -262,6 +264,7 @@ export class ModePage implements OnInit {
             // console.log(dt.a);
             let load = this.dataService.decrypt(dt.a);
             console.log(load.status);
+
             this.presentToast(load.status.message);
             this.router.navigate(['tabs/tab1']);
           },
@@ -323,6 +326,7 @@ export class ModePage implements OnInit {
             (dt: any) => {
               // console.log(dt.a);
               let load = this.dataService.decrypt(dt.a);
+
               console.log(load.status.message);
               this.presentToast(load.status.message);
               this.router.navigate(['tabs/tab1']);
