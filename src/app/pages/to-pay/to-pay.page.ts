@@ -26,6 +26,7 @@ export class ToPayPage implements OnInit {
 
   ionViewWillEnter() {
     this.orders = history.state.data.order;
+    console.log(this.orders);
   }
 
   back() {

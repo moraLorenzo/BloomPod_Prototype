@@ -21,12 +21,9 @@
         <ion-label>
           <h2>{{order.order_flower}}</h2>
           <h3>{{order.order_totalprice}}</h3>
-        </ion-label>
-        <div slot="end">
           <ion-button (click)="getGallery()">Payment</ion-button>
-
-          <ion-button (click)="cancel(i,order)">Cancel Order</ion-button>
-        </div>
+          <ion-button color="danger" (click)="cancel(i,order)">Cancel Order</ion-button>
+        </ion-label>
       </ion-item>
     </ion-list>
   </div>

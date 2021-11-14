@@ -76,6 +76,7 @@ export class QuickmodePage implements OnInit {
       let tertiary_flower = null;
       let quantity = null;
       let order_totalprice = this.bouquet_obj.quick_price;
+      let order_id = null;
       let order_payment = this.mode;
       let address = e.target[0].value;
       let order_time = e.target[4].value + 'PM';
@@ -90,6 +91,9 @@ export class QuickmodePage implements OnInit {
       if (quantity == 6 || quantity == 9) {
         tertiary_flower = null;
       }
+      if (order_id == null){
+        order_id = "null";
+      }
       this.dataService
         .processData(
           btoa('checkout').replace('=', ''),
@@ -99,6 +103,7 @@ export class QuickmodePage implements OnInit {
             main_flower,
             secondary_flower,
             tertiary_flower,
+            order_id,
             quantity,
             order_totalprice,
             order_payment,
@@ -133,6 +138,7 @@ export class QuickmodePage implements OnInit {
         let secondary_flower = null;
         let tertiary_flower = null;
         let quantity = null;
+        let order_id = null;
         let order_totalprice = this.bouquet_obj.quick_price;
         let order_payment = this.mode;
         let address = e.target[0].value;
@@ -145,12 +151,16 @@ export class QuickmodePage implements OnInit {
         if (quantity == 6 || quantity == 9) {
           tertiary_flower = null;
         }
+        if (order_id == null){
+          order_id = "null";
+        }
         this.dataService
           .processData(
             btoa('checkout').replace('=', ''),
             {
               user_id,
               order_flower,
+              order_id,
               main_flower,
               secondary_flower,
               tertiary_flower,
@@ -202,6 +212,7 @@ export class QuickmodePage implements OnInit {
       let secondary_flower = null;
       let tertiary_flower = null;
       let quantity = null;
+      let order_id = null;
       let order_totalprice = this.bouquet_obj.quick_price;
       let order_payment = this.mode;
       let address = null;
@@ -214,6 +225,9 @@ export class QuickmodePage implements OnInit {
       if (quantity == 6 || quantity == 9) {
         tertiary_flower = null;
       }
+      if (order_id == null){
+        order_id = "null";
+      }
       this.dataService
         .processData(
           btoa('checkout').replace('=', ''),
@@ -221,6 +235,7 @@ export class QuickmodePage implements OnInit {
             user_id,
             order_flower,
             main_flower,
+            order_id,
             secondary_flower,
             tertiary_flower,
             quantity,
@@ -256,6 +271,7 @@ export class QuickmodePage implements OnInit {
         let secondary_flower = null;
         let tertiary_flower = null;
         let quantity = null;
+        let order_id = null;
         let order_totalprice = this.bouquet_obj.quick_price;
         let order_payment = this.mode;
         let address = null;
@@ -269,12 +285,16 @@ export class QuickmodePage implements OnInit {
         if (quantity == 6 || quantity == 9) {
           tertiary_flower = null;
         }
+        if (order_id == null){
+          order_id = "null";
+        }
         this.dataService
           .processData(
             btoa('checkout').replace('=', ''),
             {
               user_id,
               order_flower,
+              order_id,
               main_flower,
               secondary_flower,
               tertiary_flower,

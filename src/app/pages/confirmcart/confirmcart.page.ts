@@ -71,7 +71,8 @@ export class ConfirmcartPage implements OnInit {
           primary: order.main_flower,
           secondary: order.secondary_flower,
           tertiary: order.tertiary_flower,
-          total: order.order_totalprice
+          total: order.order_totalprice,
+          order_id: order.order_id
         },
       },
     });

@@ -142,7 +142,7 @@ export class Tab4Page implements OnInit {
         let load = this.dataService.decrypt(dt.a);
         // console.log(load);
         this.orders = load.payload.orders.reverse();
-        console.log(load);
+        // console.log(load);
         // this.status = this.orders[0].order_status;
       });
   }

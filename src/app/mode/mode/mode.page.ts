@@ -78,6 +78,8 @@ export class ModePage implements OnInit {
       let tertiary_flower = this.order_obj.tertiary;
       let quantity = this.order_obj.quantity;
       let order_totalprice = this.order_obj.total;
+      let order_id = this.order_obj.order_id;
+      
       let order_payment = this.mode;
       let address = e.target[0].value;
       let order_time = e.target[4].value + 'PM';
@@ -86,17 +88,21 @@ export class ModePage implements OnInit {
       let order_address = e.target[0].value;
       let order_landmark = e.target[1].value;
       let order_contact = e.target[2].value;
-      console.log(e.target[0].value);
-      console.log(e.target[1].value);
-      console.log(e.target[2].value);
+      // console.log(e.target[0].value);
+      // console.log(e.target[1].value);
+      // console.log(e.target[2].value);
       if (quantity == 6 || quantity == 9) {
         tertiary_flower = null;
+      }
+      if (order_id == null){
+        order_id = "null";
       }
       this.dataService
         .processData(
           btoa('checkout').replace('=', ''),
           {
             user_id,
+            order_id,
             order_flower,
             main_flower,
             secondary_flower,
@@ -138,6 +144,7 @@ export class ModePage implements OnInit {
         let tertiary_flower = this.order_obj.tertiary;
         let quantity = this.order_obj.quantity;
         let order_totalprice = this.order_obj.total;
+        let order_id = this.order_obj.order_id;
         let order_payment = this.mode;
         let address = e.target[0].value;
         let order_time = e.target[4].value + 'PM';
@@ -149,12 +156,16 @@ export class ModePage implements OnInit {
         if (quantity == 6 || quantity == 9) {
           tertiary_flower = null;
         }
+        if (order_id == null){
+          order_id = "null";
+        }
         this.dataService
           .processData(
             btoa('checkout').replace('=', ''),
             {
               user_id,
               order_flower,
+              order_id,
               main_flower,
               secondary_flower,
               tertiary_flower,
@@ -209,6 +220,7 @@ export class ModePage implements OnInit {
       let tertiary_flower = this.order_obj.tertiary;
       let quantity = this.order_obj.quantity;
       let order_totalprice = this.order_obj.total;
+      let order_id = this.order_obj.order_id;
       let order_payment = this.mode;
       let address = null;
       let order_time = e.target[1].value + 'PM';
@@ -220,6 +232,9 @@ export class ModePage implements OnInit {
       if (quantity == 6 || quantity == 9) {
         tertiary_flower = null;
       }
+      if (order_id == null){
+        order_id = "null";
+      }
       this.dataService
         .processData(
           btoa('checkout').replace('=', ''),
@@ -227,6 +242,7 @@ export class ModePage implements OnInit {
             user_id,
             order_flower,
             main_flower,
+            order_id,
             secondary_flower,
             tertiary_flower,
             quantity,
@@ -265,6 +281,7 @@ export class ModePage implements OnInit {
         let tertiary_flower = this.order_obj.tertiary;
         let quantity = this.order_obj.quantity;
         let order_totalprice = this.order_obj.total;
+        let order_id = this.order_obj.order_id;
         let order_payment = this.mode;
         let address = null;
         let order_time = e.target[1].value + 'PM';
@@ -277,6 +294,9 @@ export class ModePage implements OnInit {
         if (quantity == 6 || quantity == 9) {
           tertiary_flower = null;
         }
+        if (order_id == null){
+          order_id = "null";
+        }
         this.dataService
           .processData(
             btoa('checkout').replace('=', ''),
@@ -284,6 +304,7 @@ export class ModePage implements OnInit {
               user_id,
               order_flower,
               main_flower,
+              order_id,
               secondary_flower,
               tertiary_flower,
               quantity,

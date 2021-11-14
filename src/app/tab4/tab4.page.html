@@ -199,9 +199,10 @@
             <img src=".\assets\icon\Bloom.png">
           </ion-avatar>
           <ion-label>
-            <h2>{{order.order_flower}} {{i+1}}</h2>
-            <h3>{{order.order_totalprice}}</h3>
-            <p>{{order.main_flower}} {{order.secondary_flower}} {{order.tertiary_flower}}</p>
+            <h2 *ngIf="order.order_flower=='Generated Bouquet'; else flowername">{{order.order_flower}} {{i+1}}</h2>
+            <ng-template #flowername>{{order.order_flower}}</ng-template>
+            <h3>₱ {{order.order_totalprice}}</h3>
+            <p>{{order.main_flower}}  {{order.secondary_flower}} {{order.tertiary_flower}}</p>
           </ion-label>
 
           <ion-ripple-effect></ion-ripple-effect>
