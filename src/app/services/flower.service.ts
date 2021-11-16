@@ -140,29 +140,29 @@ export class FlowersService implements PipeTransform {
     let random = ['sunflower', 'lily'];
 
     let template = this._sanitizer.bypassSecurityTrustHtml(
-      ' <img src="./../../../../assets/base/bouquet-by-twelve.png" style="width: 250px; height:250px;" alt="bouquet" /><img src="http://localhost/bloompod_api/flowers/' +
+      ' <img src="./../../../../assets/base/bouquet-by-twelve.png" style="width: 250px; height:250px;" alt="bouquet" /><img src="./../../../assets/flowers/' +
         `${mainflower}` +
-        '.png" style="width: 45px;position: absolute;left: 150px;top: 80px;z-index: 2;"/><img src="http://localhost/bloompod_api/flowers/' +
+        '.png" style="width: 45px;position: absolute;left: 150px;top: 80px;z-index: 2;"/><img src="./../../../assets/flowers/' +
         `${mainflower}` +
-        '.png" style="width: 45px;position: absolute;left: 140px;bottom: 90px;z-index: 2;"/><img src="http://localhost/bloompod_api/flowers/' +
+        '.png" style="width: 45px;position: absolute;left: 140px;bottom: 90px;z-index: 2;"/><img src="./../../../assets/flowers/' +
         `${mainflower}` +
-        '.png" style="width: 45px;position: absolute;left: 125px;top: 100px;z-index: 2;"/><img src="http://localhost/bloompod_api/flowers/' +
+        '.png" style="width: 45px;position: absolute;left: 125px;top: 100px;z-index: 2;"/><img src="./../../../assets/flowers/' +
         `${mainflower}` +
-        '.png" style="width: 45px;position: absolute;right: 125px;top: 100px;z-index: 2;"/><img src="http://localhost/bloompod_api/flowers/' +
+        '.png" style="width: 45px;position: absolute;right: 125px;top: 100px;z-index: 2;"/><img src="./../../../assets/flowers/' +
         `${tertiary}` +
-        '.png" style="width: 45px;position: absolute;left: 85px;top: 100px;z-index: 1;"/><img src="http://localhost/bloompod_api/flowers/' +
+        '.png" style="width: 45px;position: absolute;left: 85px;top: 100px;z-index: 1;"/><img src="./../../../assets/flowers/' +
         `${secondary}` +
-        '.png" style="width: 45px;position: absolute;left: 100px;top: 65px;z-index: 1;"/><img src="http://localhost/bloompod_api/flowers/' +
+        '.png" style="width: 45px;position: absolute;left: 100px;top: 65px;z-index: 1;"/><img src="./../../../assets/flowers/' +
         `${tertiary}` +
-        '.png" style="width: 45px;position: absolute;left: 125px;top: 45px;z-index: 1;"/><img src="http://localhost/bloompod_api/flowers/' +
+        '.png" style="width: 45px;position: absolute;left: 125px;top: 45px;z-index: 1;"/><img src="./../../../assets/flowers/' +
         `${secondary}` +
-        '.png" style="width: 45px;position: absolute;left: 100px;bottom: 85px;z-index: 1;"/><img src="http://localhost/bloompod_api/flowers/' +
+        '.png" style="width: 45px;position: absolute;left: 100px;bottom: 85px;z-index: 1;"/><img src="./../../../assets/flowers/' +
         `${secondary}` +
-        '.png" style="width: 45px;position: absolute;right: 85px;top: 100px;z-index: 1;"/><img src="http://localhost/bloompod_api/flowers/' +
+        '.png" style="width: 45px;position: absolute;right: 85px;top: 100px;z-index: 1;"/><img src="./../../../assets/flowers/' +
         `${tertiary}` +
-        '.png" style="width: 45px;position: absolute;right: 100px;top: 65px;z-index: 1;"/><img src="http://localhost/bloompod_api/flowers/' +
+        '.png" style="width: 45px;position: absolute;right: 100px;top: 65px;z-index: 1;"/><img src="./../../../assets/flowers/' +
         `${secondary}` +
-        '.png" style="width: 45px;position: absolute;right: 125px;top: 45px;z-index: 1;"/><img src="http://localhost/bloompod_api/flowers/' +
+        '.png" style="width: 45px;position: absolute;right: 125px;top: 45px;z-index: 1;"/><img src="./../../../assets/flowers/' +
         `${tertiary}` +
         '.png" style="width: 45px;position: absolute;right: 100px;bottom: 85px;z-index: 1;"/>'
     );
